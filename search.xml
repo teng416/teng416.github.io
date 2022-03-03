@@ -12,12 +12,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/03/02/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-]]></content>
-  </entry>
-  <entry>
     <title>多事件驱动的利率择时模型</title>
     <url>/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<h3 id="尝试搭建利率择时模型的初衷"><a href="#尝试搭建利率择时模型的初衷" class="headerlink" title="尝试搭建利率择时模型的初衷"></a>尝试搭建利率择时模型的初衷</h3><p>​    在我浅显的认知中，利率择时可以说是宏观经济永恒的主题，也是最难的领域。因为利率择时不仅需要对宏观经济的精准把握，还需要对国家政策、流动性深入的研究。就拿债券基金来说，在之前中国债券不暴雷的年代，十个债基里有八九个都是做信用下沉的，有些基金经理直接将利率债当做组合的压舱石，买入了就一直持有到期，用来平抑组合的波动。以前这种管理模式可行，是因为信用债和非标资产可以给予组合足够的回报。随着信用债开始逐步暴雷，资管新规开始严格限制非标资产的比例，这些基金经理原先的套路行不通了，开始试图通过其他方式增厚收益。所有打新等固收+产品开始陆续受到追捧。可打新又能帮他们多久呢？个人认为未来一定会有越来越多的投资者开始增加对利率债的投资，利率择时也会被研究的更加透彻。</p>
@@ -125,5 +119,11 @@
         <tag>技术分析</tag>
         <tag>事件驱动模型</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/03/02/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+]]></content>
   </entry>
 </search>
