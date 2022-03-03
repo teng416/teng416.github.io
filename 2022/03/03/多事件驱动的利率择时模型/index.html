@@ -20,28 +20,49 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Teng&#39;s Website">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="尝试搭建利率择时模型的初衷​    在我浅显的认知中，利率择时可以说是宏观经济永恒的主题，也是最难的领域。因为利率择时不仅需要对宏观经济的精准把握，还需要对国家政策、流动性深入的研究。就拿债券基金来说，在之前中国债券不暴雷的年代，十个债基里有八九个都是做信用下沉的，有些基金经理直接将利率债当做组合的压舱石，买入了就一直持有到期，用来平抑组合的波动。以前这种管理模式可行，是因为信用债和非标资产可以给">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多事件驱动的利率择时模型">
+<meta property="og:url" content="http://example.com/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Teng&#39;s Website">
+<meta property="og:description" content="尝试搭建利率择时模型的初衷​    在我浅显的认知中，利率择时可以说是宏观经济永恒的主题，也是最难的领域。因为利率择时不仅需要对宏观经济的精准把握，还需要对国家政策、流动性深入的研究。就拿债券基金来说，在之前中国债券不暴雷的年代，十个债基里有八九个都是做信用下沉的，有些基金经理直接将利率债当做组合的压舱石，买入了就一直持有到期，用来平抑组合的波动。以前这种管理模式可行，是因为信用债和非标资产可以给">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/模拟净值.png">
+<meta property="og:image" content="http://example.com/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/%E5%8F%98%E9%87%8F%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://example.com/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/image-20220303161832455.png">
+<meta property="og:image" content="http://example.com/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/image-20220303162046974.png">
+<meta property="og:image" content="http://example.com/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/image-20220303162144495.png">
+<meta property="og:image" content="http://example.com/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/image-20220303162151068.png">
+<meta property="og:image" content="http://example.com/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/image-20220303162216744.png">
+<meta property="og:image" content="http://example.com/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/image-20220303162221698.png">
+<meta property="og:image" content="http://example.com/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/image-20220303162259892.png">
+<meta property="og:image" content="http://example.com/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/image-20220303162303641.png">
+<meta property="og:image" content="http://example.com/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/image-20220303162414904.png">
+<meta property="og:image" content="http://example.com/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/image-20220303162434078.png">
+<meta property="article:published_time" content="2022-03-03T07:09:26.000Z">
+<meta property="article:modified_time" content="2022-03-03T08:27:01.545Z">
 <meta property="article:author" content="Teng Li">
+<meta property="article:tag" content="宏观利率">
+<meta property="article:tag" content="利率择时">
+<meta property="article:tag" content="技术分析">
+<meta property="article:tag" content="事件驱动模型">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/模拟净值.png">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Teng's Website</title>
+  <title>多事件驱动的利率择时模型 | Teng's Website</title>
   
 
 
@@ -182,9 +203,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -200,10 +222,9 @@
       <meta itemprop="name" content="Teng's Website">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/03/%E5%A4%9A%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">多事件驱动的利率择时模型</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          多事件驱动的利率择时模型
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -254,7 +275,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="尝试搭建利率择时模型的初衷"><a href="#尝试搭建利率择时模型的初衷" class="headerlink" title="尝试搭建利率择时模型的初衷"></a>尝试搭建利率择时模型的初衷</h3><p>​    在我浅显的认知中，利率择时可以说是宏观经济永恒的主题，也是最难的领域。因为利率择时不仅需要对宏观经济的精准把握，还需要对国家政策、流动性深入的研究。就拿债券基金来说，在之前中国债券不暴雷的年代，十个债基里有八九个都是做信用下沉的，有些基金经理直接将利率债当做组合的压舱石，买入了就一直持有到期，用来平抑组合的波动。以前这种管理模式可行，是因为信用债和非标资产可以给予组合足够的回报。随着信用债开始逐步暴雷，资管新规开始严格限制非标资产的比例，这些基金经理原先的套路行不通了，开始试图通过其他方式增厚收益。所有打新等固收+产品开始陆续受到追捧。可打新又能帮他们多久呢？个人认为未来一定会有越来越多的投资者开始增加对利率债的投资，利率择时也会被研究的更加透彻。</p>
+        <h3 id="尝试搭建利率择时模型的初衷"><a href="#尝试搭建利率择时模型的初衷" class="headerlink" title="尝试搭建利率择时模型的初衷"></a>尝试搭建利率择时模型的初衷</h3><p>​    在我浅显的认知中，利率择时可以说是宏观经济永恒的主题，也是最难的领域。因为利率择时不仅需要对宏观经济的精准把握，还需要对国家政策、流动性深入的研究。就拿债券基金来说，在之前中国债券不暴雷的年代，十个债基里有八九个都是做信用下沉的，有些基金经理直接将利率债当做组合的压舱石，买入了就一直持有到期，用来平抑组合的波动。以前这种管理模式可行，是因为信用债和非标资产可以给予组合足够的回报。随着信用债开始逐步暴雷，资管新规开始严格限制非标资产的比例，这些基金经理原先的套路行不通了，开始试图通过其他方式增厚收益。所有打新等固收+产品开始陆续受到追捧。可打新又能帮他们多久呢？个人认为未来一定会有越来越多的投资者开始增加对利率债的投资，利率择时也会被研究的更加透彻。</p>
 <p>​    目前市面上多数的券商研报对于利率择时主要通过宏观指标入手将经济划分成复苏、过热、滞涨、衰退，类似于美林时钟，以此对未来利率走势进行预测判断。这种方法的缺陷在于无法很精准的确定目前经济所在的周期，且四个周期的持续时间有时也会显著不同，甚至有时会跨过某个周期直接进入下一个周期。正好本人宏观经济匮乏，所以只能从金工技术分析的角度尝试搭建一个利率择时模型。这个模型没有覆盖宏观指标与政策事件，因此仅可算作是一个起点模型，后续需要更加精细的打磨与调整。</p>
 <h3 id="模型概况与表现"><a href="#模型概况与表现" class="headerlink" title="模型概况与表现"></a>模型概况与表现</h3><p><strong>多事件驱动的国债期货择时模型最终由三个子事件组成，分别为：</strong></p>
 <p><strong>子事件</strong>1：FR007 1年期利率互换价格连续10个交易日下降，子事件信号触发后，做多十年国债期货15个交易日；</p>
@@ -349,169 +370,36 @@
 <p><strong>事件触发侧重点不同：趋势限定条件与极值限定条件。</strong>事件1与事件4相比较，事件1的触发并不受标准差限制，仅注重趋势（10个交易日连续下降）的形成;事件4的触发需超过均值加两倍标准差，所以事件4触发时价格已经处于短期极高的临界位置，大概率均值回复。因此当事件1触发时投资逻辑为趋势投资，当事件4触发时投资逻辑为均值回复。</p>
 <p><strong>事件期限结构不同：短期极值均值回复、中长期极值顺势而为。</strong>事件4与事件5的期限结构存在差异，事件4属于短期（1个月）价格处于历史高位，事件5属于中长期（1个季度）价格处于历史高位。由于短期定价更易受到投资者情绪等因素的主导，故短期的极值较大概率出现均值回复的情况。当价格突破了长期以来的波动区间，则说明定价逻辑可能出现改变，新的趋势已经形成。故本模型对期限结构不同的极值事件采取不同的操作增厚收益。</p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/%E5%AE%8F%E8%A7%82%E5%88%A9%E7%8E%87/" rel="tag"># 宏观利率</a>
+              <a href="/tags/%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6/" rel="tag"># 利率择时</a>
+              <a href="/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/" rel="tag"># 技术分析</a>
+              <a href="/tags/%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B/" rel="tag"># 事件驱动模型</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/03/another-test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Teng Li">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Teng's Website">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/03/another-test/" class="post-title-link" itemprop="url">another test</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-03-03 13:54:15 / 修改时间：14:32:15" itemprop="dateCreated datePublished" datetime="2022-03-03T13:54:15+08:00">2022-03-03</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>34</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>This is another test to insert a picture.</p>
-<img src="/2022/03/03/another-test/01.PNG" class>
+        
 
 
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/03/another-test/" rel="prev" title="another test">
+      <i class="fa fa-chevron-left"></i> another test
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/02/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Teng Li">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Teng's Website">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/02/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-03-02 14:56:09 / 修改时间：16:02:20" itemprop="dateCreated datePublished" datetime="2022-03-02T14:56:09+08:00">2022-03-02</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>159</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -564,6 +452,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%E6%90%AD%E5%BB%BA%E5%88%A9%E7%8E%87%E6%8B%A9%E6%97%B6%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%88%9D%E8%A1%B7"><span class="nav-number">1.</span> <span class="nav-text">尝试搭建利率择时模型的初衷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%A6%82%E5%86%B5%E4%B8%8E%E8%A1%A8%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">模型概况与表现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%AD%9B%E9%80%89"><span class="nav-number">3.</span> <span class="nav-text">变量筛选</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%A4%87%E9%80%89%E5%8F%98%E9%87%8F%E9%80%89%E6%8B%A9%E6%95%B4%E4%BD%93%E5%88%86%E7%B1%BB%E4%B8%8E%E7%BB%93%E6%9E%84"><span class="nav-number">3.1.</span> <span class="nav-text">模型备选变量选择整体分类与结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BA%8B%E4%BB%B6%E6%95%88%E6%9E%9C"><span class="nav-number">4.</span> <span class="nav-text">单事件效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E4%BA%8B%E4%BB%B6%E6%95%B4%E5%90%88"><span class="nav-number">5.</span> <span class="nav-text">多事件整合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%9C%E7%9A%84%E8%AE%A8%E8%AE%BA"><span class="nav-number">6.</span> <span class="nav-text">最终模型结果的讨论</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
