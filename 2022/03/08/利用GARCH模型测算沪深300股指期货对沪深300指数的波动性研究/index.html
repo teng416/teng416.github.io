@@ -48,7 +48,7 @@
 <meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308132537101.png">
 <meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308132631090.png">
 <meta property="article:published_time" content="2022-03-08T02:03:44.000Z">
-<meta property="article:modified_time" content="2022-03-08T06:44:04.896Z">
+<meta property="article:modified_time" content="2022-03-08T07:04:31.910Z">
 <meta property="article:author" content="Teng Li">
 <meta property="article:tag" content="GARCH模型">
 <meta name="twitter:card" content="summary">
@@ -244,7 +244,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-03-08 10:03:44 / 修改时间：14:44:04" itemprop="dateCreated datePublished" datetime="2022-03-08T10:03:44+08:00">2022-03-08</time>
+              <time title="创建时间：2022-03-08 10:03:44 / 修改时间：15:04:31" itemprop="dateCreated datePublished" datetime="2022-03-08T10:03:44+08:00">2022-03-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -372,7 +372,7 @@
 <li><p>由模型做的波动率预测会偏高。</p>
 </li>
 </ol>
-<h3 id="2-GARCH模型简介"><a href="#2-GARCH模型简介" class="headerlink" title="2. GARCH模型简介"></a>2. GARCH模型简介</h3><p>ARCH模型用来描述波动率能得到很好的效果， 但实际建模时可能需要较高的阶数。(Bollerslev 1986)提出了ARCH模型的一种重要推广模型，称为GARCH模型。 对于一个对数收益率序列$r_{t}$，令$a_{t}&#x3D;r_{t}-\mu_{t}&#x3D;r_{t}-E\left(r_{t} \mid F_{t-1}\right)$为其新息序列，称$\left{a_{t}\right}$服从$\operatorname{GARCH}(p, q)$模型，如果$a_{t}$满足<br>$$<br>\begin{gathered}<br>a_{t}&#x3D;\sigma_{t} \varepsilon_{t} \<br>\sigma_{t}^{2}&#x3D;\alpha_{0}+\sum_{i&#x3D;1}^{p} \alpha_{i} a_{t-i}^{2}+\sum_{j&#x3D;1}^{q} \beta_{j} \sigma_{t-j}^{2}<br>\end{gathered}<br>$$<br>其中$\left{\varepsilon_{t}\right}$为零均值单位方差的独立同分布白噪声列，$\alpha_{0}&gt;0, \alpha_{i} \geq 0, \beta_{j} \geq 0,0&lt;\sum_{i&#x3D;1}^{p} \alpha_{i}+\sum_{j&#x3D;1}^{q} \beta_{j}&lt;1$。最后一个条件用来保证满足模型$a_{t}$的无条件方差有限且不变，而条件方差$\sigma_{t}^{2}$可以随时间t而变。</p>
+<h3 id="2-GARCH模型简介"><a href="#2-GARCH模型简介" class="headerlink" title="2. GARCH模型简介"></a>2. GARCH模型简介</h3><p>ARCH模型用来描述波动率能得到很好的效果， 但实际建模时可能需要较高的阶数。(Bollerslev 1986)提出了ARCH模型的一种重要推广模型，称为GARCH模型。 对于一个对数收益率序列$r_{t}$，令$a_{t}&#x3D;r_{t}-\mu_{t}&#x3D;r_{t}-E\left(r_{t} \mid F_{t-1}\right)$为其新息序列，称$\left\lbrace a_{t}\right\rbrace$服从$\operatorname{GARCH}(p, q)$模型，如果$a_{t}$满足<br>$$<br>\begin{gathered}<br>a_{t}&#x3D;\sigma_{t} \varepsilon_{t} \<br>\sigma_{t}^{2}&#x3D;\alpha_{0}+\sum_{i&#x3D;1}^{p} \alpha_{i} a_{t-i}^{2}+\sum_{j&#x3D;1}^{q} \beta_{j} \sigma_{t-j}^{2}<br>\end{gathered}<br>$$<br>其中$\left\lbrace\varepsilon_{t}\right\rbrace$为零均值单位方差的独立同分布白噪声列，$\alpha_{0}&gt;0, \alpha_{i} \geq 0, \beta_{j} \geq 0,0&lt;\sum_{i&#x3D;1}^{p} \alpha_{i}+\sum_{j&#x3D;1}^{q} \beta_{j}&lt;1$。最后一个条件用来保证满足模型$a_{t}$的无条件方差有限且不变，而条件方差$\sigma_{t}^{2}$可以随时间t而变。</p>
 <p>在$\operatorname{GARCH}(p, q)$中，$p$代表$\operatorname{GARCH}$项的阶数，$q$是$\operatorname{ARCH}$项的阶数, 也就是说$\operatorname{ARCH}$ 模型是$\operatorname{GARCH}$模型的一个特例, 就是条件方差模型中不存在滞后预测方差$\sigma_{t-1}^{2}$的情况。</p>
 <p>$\operatorname{GARCH}$模型中的$\alpha_{0}$代表系统中原先的不确定性，$\alpha_{i}$为滞后期残差平方项的系数, 代表近期市场“噪音”的重要性。另外$\beta_{j}$为滞后期条件异方差的系数,能够说明以前消息对于未来波动性的影响效果。  $\alpha_{i}$<strong>的数值愈大，表明市场信息的传递速度较快，市场信息能够更快的表现在未来波动性变化中； 而$\beta_{j}$  的数值越大，则说明干扰波动性的因素影响越持久，也说明信息传递的效率较为低下。</strong></p>
 <h1 id="三、沪深300股指期货对现货市场波动性影响的实证分析"><a href="#三、沪深300股指期货对现货市场波动性影响的实证分析" class="headerlink" title="三、沪深300股指期货对现货市场波动性影响的实证分析"></a>三、沪深300股指期货对现货市场波动性影响的实证分析</h1><h2 id="一-样本数据的选取"><a href="#一-样本数据的选取" class="headerlink" title="(一) 样本数据的选取"></a>(一) 样本数据的选取</h2><p>沪深300股指期货于2010年4月16日起正式推出交易。因此本课题选取沪深300指数自2005年4月8日开始编制起至2021年11月26日的日收盘价，将沪深300股指期货推出日（2010年4月16日）之前的数据划分为A组，推出日之后的数据划分为B组，分组对比分析沪深300股指期货推出前后现货市场波动率变化，来研究沪深300股指期货对现货市场波动性的影响。</p>
