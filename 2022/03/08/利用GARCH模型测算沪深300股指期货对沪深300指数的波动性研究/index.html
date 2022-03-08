@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|STZhongsong:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="沪深300股指期货在我国的正式推出，使得我国资本市场进入了一个崭新的时代，股指期货为投资者提供了一种既能避险又能套利的风险管理工具。但是,在看到股指期货带来巨大利好的同时，也应充分意识到随之而来的风险。由于股指期货灵活的交易制度和丰富的功能，一方面它可以令现货市场产生良性波动，提高信息传播效率，使其长期健康发展，另一方面，当期货市场本身价格发生剧烈变动时势必会影响现货市场的稳定运行。国内学者在我国">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用GARCH模型测算沪深300股指期货对沪深300指数的波动性研究">
+<meta property="og:url" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/index.html">
+<meta property="og:site_name" content="Teng&#39;s Website">
+<meta property="og:description" content="沪深300股指期货在我国的正式推出，使得我国资本市场进入了一个崭新的时代，股指期货为投资者提供了一种既能避险又能套利的风险管理工具。但是,在看到股指期货带来巨大利好的同时，也应充分意识到随之而来的风险。由于股指期货灵活的交易制度和丰富的功能，一方面它可以令现货市场产生良性波动，提高信息传播效率，使其长期健康发展，另一方面，当期货市场本身价格发生剧烈变动时势必会影响现货市场的稳定运行。国内学者在我国">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308110847781.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308110855930.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308111602470.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308111613591.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308125427036.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308125449422.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308125755375.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308130140945.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308130251751.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308130423229.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308130514921.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308130521746.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308131958801.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308132008204.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308132155229.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308132215958.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308132336787.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308132438287.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308132537101.png">
+<meta property="og:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308132631090.png">
+<meta property="article:published_time" content="2022-03-08T02:03:44.000Z">
+<meta property="article:modified_time" content="2022-03-08T06:44:04.896Z">
+<meta property="article:author" content="Teng Li">
+<meta property="article:tag" content="GARCH模型">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308110847781.png">
+
+<link rel="canonical" href="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>利用GARCH模型测算沪深300股指期货对沪深300指数的波动性研究 | Teng's Website</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Teng's Website</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">7</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-guestbook">
+
+    <a href="/guestbook" rel="section"><i class="fa fa-comment fa-fw"></i>留言</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Teng Li">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Teng's Website">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          利用GARCH模型测算沪深300股指期货对沪深300指数的波动性研究
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-03-08 10:03:44 / 修改时间：14:44:04" itemprop="dateCreated datePublished" datetime="2022-03-08T10:03:44+08:00">2022-03-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E5%B7%A5/" itemprop="url" rel="index"><span itemprop="name">金工</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>12 分钟</span>
+            </span>
+            <div class="post-description">沪深300股指期货在我国的正式推出，使得我国资本市场进入了一个崭新的时代，股指期货为投资者提供了一种既能避险又能套利的风险管理工具。但是,在看到股指期货带来巨大利好的同时，也应充分意识到随之而来的风险。由于股指期货灵活的交易制度和丰富的功能，一方面它可以令现货市场产生良性波动，提高信息传播效率，使其长期健康发展，另一方面，当期货市场本身价格发生剧烈变动时势必会影响现货市场的稳定运行。国内学者在我国股指期货推出前后做了大量的研究，得出的结论不尽相同, 本文采用事前事后研究法，通过建立GARCH模型，对比分析股指期货推出前后沪深300指数收益率的波动性变化情况。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="一、-沪深300估值期货对现货市场波动性影响机制分析"><a href="#一、-沪深300估值期货对现货市场波动性影响机制分析" class="headerlink" title="一、 沪深300估值期货对现货市场波动性影响机制分析"></a>一、 沪深300估值期货对现货市场波动性影响机制分析</h1><h2 id="一-内在机制"><a href="#一-内在机制" class="headerlink" title="(一) 内在机制"></a>(一) 内在机制</h2><p>​    本部分将主要基于股指期货的交易制度和功能辨析股指期货对现货市场波动性影响的内在机制。</p>
+<p><strong>股指期货的交易制度：</strong>股指期货的高流动性（T+0）、开盘时间早于现货市场、低交易成本以及卖空机制和杠杆交易制度设计，使得期货市场对新信息的反应速度显著快于现货市场，从而令期货市场与现货市场之间存在一种“价格引导机制”，因此股指期货对市场信息的灵敏反应使期货价格的波动更加频繁，推动股市价格的短期波动。</p>
+<p><strong>股指期货的市场功能：</strong>股指期货除了上述的“价格发现”功能，还具有风险规避、套利及投机等功能。</p>
+<ol>
+<li><p>风险规避：套期保值是指交易人在买进（或卖出）实际货物的同时，在期货交易所卖出（或买进）同等数量的期货交易合约作为保值。这种对冲交易可以是避免或减少价格发生不利变动的损失，促使股价小幅度波动，起到稳定股价的作用。</p>
+</li>
+<li><p>套利功能：在期货市场上，套利是指利用相关市场或相关合约之间的价差变化进行方向相反的交易，以通过价差发生有利变化而获利的交易行为。当期货价格高于理论价格时，可以通过买入现货、卖空期货进行正向套利；当期货价格低于理论价格时，则可以通过买入期货、卖出现货进行反向套利。在这样的交易机制下，期限价差将保持在一个合理区间内。也即，期现套利机制的存在使得现货价格与期货价格不会相差太大,使得现货价格更加合理,期货价格也更能有效反应现货价格,有利于维持现货市场的稳定性。</p>
+</li>
+<li><p>投机功能：投机者频繁地建仓，对冲手中的合约，增加了期货市场的交易量，增大了流动性，这既使套期保值交易容易成交，又能减少交易者进出市场所可能引起的价格波动。同时，投机者在价格处于较低时买进期货，使需求增加，导致价格上涨，在较高价格时卖出期货，使需求减少，使价格波动趋于平稳，从而形成合理的价格水平，保持价格体系的稳定。</p>
+</li>
+</ol>
+<h2 id="二-外在机制"><a href="#二-外在机制" class="headerlink" title="(二) 外在机制"></a>(二) 外在机制</h2><p>​    本部分将主要基于我国期货市场的投资者构成和监管政策辨析沪深300股指期货对现货市场波动性影响的外在机制。</p>
+<p>​    首先需要明确的是，现货市场短期波动性的增加，并不一定意味市场的稳定机制弱化，而是取决于其所反映的信息本身是否有效。倘若信息反映了基本面变化，则波动性的增加实际上提高了信息效率，对股票市场的纠偏能力也在随之增长，进而减缓市场摩擦，客观上有利于现货市场的长期的稳定运行；相反，若信息主要来源于投机因素而非基本面因素，则所引发的现货波动性不利于市场的长期稳定。</p>
+<p>​    信息的有效性与市场投资者结构息息相关，为了观察我国期货市场的投资者结构，我们使用沪深300指数期货“成交持仓比”，该指标的本质是一个换手率指标。从下图可知，在2010-2014年，沪深300指数期货的“成交持仓比”与沪深300近12个月波动率呈显著正相关性；期货成交持仓比中枢在150倍左右上下波动，说明沪深300指数期货上市初期，投资者主要以投机者为主，期货市场的追涨杀跌交易效应显著。这进而说明“投机者为主”的市场结构在人为加大期货市场波动的同时，会产生过多的无效信息，由于跨市场之间的信息传递和由此产生的价格引导机制，期货市场的波动以及无效信息将进一步传导至现货市场，不免会加剧现货市场的波动。</p>
+<div><table frame="void">    <!--用了<div>进行封装-->
+    <tr>
+        <td><div><center>    <!--每个格子内是图片加标题-->
+            <img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308110847781.png" alt="image-20220308110847781" style="zoom:70%;">
+            <br>    <!--换行-->
+            沪深300波动率 vs. IF期货成交持仓比2010年以来    <!--标题1-->
+        </center></div></td>    
+         <td><div><center>    <!--第二张图片-->
+            <img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308110855930.png" alt="image-20220308110855930" style="zoom:70%;">
+            <br>
+            沪深300波动率 vs. IF期货成交持仓比2015年以来
+        </center></div></td>
+    </tr>
+</table></div>
+
+<div><table frame="void">    <!--用了<div>进行封装-->
+    <tr>
+        <td><div><center>    <!--每个格子内是图片加标题-->
+            <img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308111602470.png" alt="image-20220308111602470" style="zoom:70%;">
+            <br>    <!--换行-->
+            沪深300股指期货成交量    <!--标题1-->
+        </center></div></td>    
+         <td><div><center>    <!--第二张图片-->
+            <img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308111613591.png" alt="image-20220308111613591" style="zoom:70%;">
+            <br>
+            沪深300股指期货持仓量
+        </center></div></td>
+    </tr>
+</table></div>
+
+
+<p>​    2015年6-8月股市的大级别急速下跌使股指期货陷入舆论漩涡，为抑制过度投机、加强异常交易监管，监管层从8月开始逐步加大对股指期货的管控，至9月初出台最严管控措施：单合约单日开仓限10手、非套保交易保证金提至40%、平今仓手续费提高100倍。在全面推行上述政策后，股指期货交易量大幅萎缩并一直维持地量水平，而持仓量则稳步上行，2016年以来指数期货的“成交持仓比”中枢稳定维持在15倍上下，说明以私募基金和个人投资者为主的投机性交易逐年下降，而套利和套期保值的交易量占比逐年上升。综上所述，随着针对中国市场特色的监管机制逐渐完善，股指期货能够发挥其对现货市场的内在影响机制，即“价格发现”、“套利和套期保值”等，促使现货市场健康波动，提高信息效率，减缓市场摩擦，进而促进现货市场长期稳定运行。</p>
+<h1 id="二、-相关理论模型概述"><a href="#二、-相关理论模型概述" class="headerlink" title="二、 相关理论模型概述"></a>二、 相关理论模型概述</h1><h2 id="一-相关理论模型简介"><a href="#一-相关理论模型简介" class="headerlink" title="(一) 相关理论模型简介"></a>(一) 相关理论模型简介</h2><p>早期对于股票波动性的研究方法多采用ARMA模型拟合数据的生成过程，通过ACF、PACF等确定其滞后阶数。但ARMA模型涉及的时间序列方差不变，在现实生活中不符合股票市场的特征（金融市场的时间序列存在非平稳性和明显的异方差特征）。为了解决此问题，R.Engle于1982年提出了自回归条件异方差模型（autoregressive conditional heteroscedasticity model）即ARCH模型，核心思想在于残差项的条件方差依赖于其前值的大小。Bollerslev于1986年将ARCH模型拓展为GARCH模型，使其在条件变异数的结构设定上更加具有弹性，在参数估计时更加精简；为解决现实中股价上升与下降带来波动性的非对称现象等问题，GARCH模型被进一步拓展。目前GARCH及其拓展模型被广泛采用，已经成为主流方法。</p>
+<h3 id="1-ARCH模型简介"><a href="#1-ARCH模型简介" class="headerlink" title="1. ARCH模型简介"></a>1. ARCH模型简介</h3><p>资产收益率的波动性往往会出现集群现象，即收益率的在一定时间出现大的波动后，接下来短时间会出现更大的波动；相反在波动率较小的时间段后常常伴随着较小的波动。同时收益率的波动率具有尖峰厚尾的特征，方差随着时间的变化而变化，即存在异方差性。ARCH模型的基本思想是：</p>
+<ol>
+<li><p>资产收益率的扰动序列$a_{t}&#x3D;r_{t}-E\left(r_{t} \mid F_{t-1}\right)$前后不相关， 但前后不独立。</p>
+</li>
+<li><p>的不独立性，描述为$\operatorname{Var}\left(a_{t} \mid F_{t-1}\right)$  可以用$a_{t}^{2}$的滞后值的线性组合表示。</p>
+</li>
+</ol>
+<p>ARCH（q）模型的表述如下</p>
+<p>$$<br>a_{t}&#x3D;\sigma_{t} \varepsilon_{t}<br>$$</p>
+<p>$$<br>\sigma_{t}^{2}&#x3D;\alpha_{0}+\sum_{i&#x3D;1}^{q} \alpha_{i} a_{t-i}^{2}<br>$$</p>
+<p>其中$\varepsilon_{t}$是零均值单位方差的独立同分布白噪声，$\alpha_{0}&gt;0, \alpha_{j} \geq 0, j&#x3D;1,2,3 \ldots q$，另外$\alpha_{j}$还需要满足一些条件使得$\operatorname{Var}\left(a_{t}\right)$有限，类似于$\operatorname{AR}(\mathrm{p})$序列的平稳性特征根条件。在上述波动率方程的右侧，仅出现了截止到$t-1$时刻$a_{t-1}, a_{t-2}, \ldots a_{t-q}$的确定性函数而没有新增的随机扰动，所以称ARCH模型为确定性的波动率模型。</p>
+<p>​    ARCH模型的优点是能够利用较少的参数就能很好的拟合实际数据 , 可以较好的刻画收益率的集群性效应 , 可以被用来分析证券市场、汇率和利率的波动性。同时ARCH模型存在以下缺点：</p>
+<ol>
+<li><p>因为假定$a_{t-j}$通过$a_{t-j-1}^{2}$影响波动率$\sigma_{t}$， 所以正的扰动和负的扰动对波动率影响相同，但是实际的资产收益率中正负扰动对波动率影响不同，较大的负扰动比正扰动引起的波动更大。</p>
+</li>
+<li><p>ARCH模型对模型参数有较严格的约束条件，即使是$\mathrm{ARCH}(1)$，为了能计算峰度，也需要$a_{1} \in\left(0, \frac{\sqrt{3}}{3}\right)$，高阶$\mathrm{ARCH}(\mathrm{q})$的约束条件更为复杂。这对高阶ARCH模型通过超额峰度表达厚尾性是一个限制。</p>
+</li>
+<li><p>只能描述条件方差的变化， 但是不能解释变化的原因。</p>
+</li>
+<li><p>由模型做的波动率预测会偏高。</p>
+</li>
+</ol>
+<h3 id="2-GARCH模型简介"><a href="#2-GARCH模型简介" class="headerlink" title="2. GARCH模型简介"></a>2. GARCH模型简介</h3><p>ARCH模型用来描述波动率能得到很好的效果， 但实际建模时可能需要较高的阶数。(Bollerslev 1986)提出了ARCH模型的一种重要推广模型，称为GARCH模型。 对于一个对数收益率序列$r_{t}$，令$a_{t}&#x3D;r_{t}-\mu_{t}&#x3D;r_{t}-E\left(r_{t} \mid F_{t-1}\right)$为其新息序列，称$\left{a_{t}\right}$服从$\operatorname{GARCH}(p, q)$模型，如果$a_{t}$满足<br>$$<br>\begin{gathered}<br>a_{t}&#x3D;\sigma_{t} \varepsilon_{t} \<br>\sigma_{t}^{2}&#x3D;\alpha_{0}+\sum_{i&#x3D;1}^{p} \alpha_{i} a_{t-i}^{2}+\sum_{j&#x3D;1}^{q} \beta_{j} \sigma_{t-j}^{2}<br>\end{gathered}<br>$$<br>其中$\left{\varepsilon_{t}\right}$为零均值单位方差的独立同分布白噪声列，$\alpha_{0}&gt;0, \alpha_{i} \geq 0, \beta_{j} \geq 0,0&lt;\sum_{i&#x3D;1}^{p} \alpha_{i}+\sum_{j&#x3D;1}^{q} \beta_{j}&lt;1$。最后一个条件用来保证满足模型$a_{t}$的无条件方差有限且不变，而条件方差$\sigma_{t}^{2}$可以随时间t而变。</p>
+<p>在$\operatorname{GARCH}(p, q)$中，$p$代表$\operatorname{GARCH}$项的阶数，$q$是$\operatorname{ARCH}$项的阶数, 也就是说$\operatorname{ARCH}$ 模型是$\operatorname{GARCH}$模型的一个特例, 就是条件方差模型中不存在滞后预测方差$\sigma_{t-1}^{2}$的情况。</p>
+<p>$\operatorname{GARCH}$模型中的$\alpha_{0}$代表系统中原先的不确定性，$\alpha_{i}$为滞后期残差平方项的系数, 代表近期市场“噪音”的重要性。另外$\beta_{j}$为滞后期条件异方差的系数,能够说明以前消息对于未来波动性的影响效果。  $\alpha_{i}$<strong>的数值愈大，表明市场信息的传递速度较快，市场信息能够更快的表现在未来波动性变化中； 而$\beta_{j}$  的数值越大，则说明干扰波动性的因素影响越持久，也说明信息传递的效率较为低下。</strong></p>
+<h1 id="三、沪深300股指期货对现货市场波动性影响的实证分析"><a href="#三、沪深300股指期货对现货市场波动性影响的实证分析" class="headerlink" title="三、沪深300股指期货对现货市场波动性影响的实证分析"></a>三、沪深300股指期货对现货市场波动性影响的实证分析</h1><h2 id="一-样本数据的选取"><a href="#一-样本数据的选取" class="headerlink" title="(一) 样本数据的选取"></a>(一) 样本数据的选取</h2><p>沪深300股指期货于2010年4月16日起正式推出交易。因此本课题选取沪深300指数自2005年4月8日开始编制起至2021年11月26日的日收盘价，将沪深300股指期货推出日（2010年4月16日）之前的数据划分为A组，推出日之后的数据划分为B组，分组对比分析沪深300股指期货推出前后现货市场波动率变化，来研究沪深300股指期货对现货市场波动性的影响。</p>
+<p>根据金融时间序列原理，收益率是反映价格变化的指标，波动率是标的资产收益率的条件方差。通常收益率$R_{t}&#x3D;\frac{P_{t}-P_{t-1}}{P_{t-1}} \times 100 %$以指数的涨跌幅度百分比衡量，即  ，但因为股票等金融资产价格表现的特殊性，直接用指数的涨跌幅度百分比衡量收益率会使数据失真。回顾以往文献可以发现，多数对股票收益率波动性的研究均使用指数的对数一阶差分来衡量收益率。对数的一阶差分不仅可以消除数据的非平稳性还可以使得其分布接近正态分布，有助于模型的建立。故本课题中，沪深300指数的收益率以对数一阶差分的值来表示，公式为：<br>$$<br>R_{t}&#x3D;\ln \left(P_{t}\right)-\ln \left(P_{t-1}\right)<br>$$<br>其中$P_{t}$表示第$t$日的收盘价，  表示第$t-1$日的收盘价。因此一阶差分后共4045个日度收益率数据，其中引入股指期货前1221个数据，引入股指期货后2824个数据。</p>
+<h2 id="二-数据来源及处理方法"><a href="#二-数据来源及处理方法" class="headerlink" title="(二) 数据来源及处理方法"></a>(二) 数据来源及处理方法</h2><p>沪深300指数日度收盘价主要来自wind API数据接口，研究时间段根据股指期货推出的时间以及股指期货结算日分为三部分。</p>
+<table>
+<thead>
+<tr>
+<th>样本名称</th>
+<th>研究时间段</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全样本</td>
+<td>2005年4月8日 - 2021年11月26日</td>
+</tr>
+<tr>
+<td>股指期货推出前样本</td>
+<td>2005年4月8日 - 2010年4月15日</td>
+</tr>
+<tr>
+<td>估值期货推出后样本</td>
+<td>2010年4月16日 - 2021年11月26日</td>
+</tr>
+</tbody></table>
+<h3 id="1、-描述性统计"><a href="#1、-描述性统计" class="headerlink" title="1、 描述性统计"></a>1、 描述性统计</h3><p>首先对沪深300股指期货的收盘价进行描述性统计，将前文选取的数据分成两部分；沪深300股指期货推出前和推出后。下图分别为推出前和推出后的描述性统计。</p>
+<div><table frame="void">    <!--用了<div>进行封装-->
+    <tr>
+        <td><div><center>    <!--每个格子内是图片加标题-->
+            <img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308125427036.png" alt="image-20220308125427036" style="zoom:50%;">
+            <br>    <!--换行-->
+            沪深300股指期货推出前日度收益率描述性统计    <!--标题1-->
+        </center></div></td>    
+         <td><div><center>    <!--第二张图片-->
+            <img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308125449422.png" alt="image-20220308125449422" style="zoom:50%;">
+            <br>
+            沪深300股指期货推出后日度收益率描述性统计
+        </center></div></td>
+    </tr>
+</table></div>
+
+<table>
+<thead>
+<tr>
+<th>样本区间</th>
+<th>样本数</th>
+<th>均值</th>
+<th>标准差</th>
+<th>偏度</th>
+<th>峰度</th>
+<th>J-B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>期货推出前</td>
+<td>1222</td>
+<td>0.0010</td>
+<td>0.021</td>
+<td>-0.427</td>
+<td>2.180</td>
+<td>275.799</td>
+</tr>
+<tr>
+<td>期货推出后</td>
+<td>2824</td>
+<td>0.0001</td>
+<td>0.014</td>
+<td>-0.683</td>
+<td>4.872</td>
+<td>3000.233</td>
+</tr>
+</tbody></table>
+<p>从表 2-5 中我们可以了解到，推出前后，样本数分别为1222 和2824，沪深300现货指数日回报率平均值分别为0.0010 和0.0001，标准差分别为0.021和0.014。通过比较可知在推出沪深300股指期货后，现货市场的波动性减少了。股指期货推出前后的峰度由小于3增长到大于3，说明推出股指期货后由平峰变为尖峰，偏度均小于0且更加降低说明尾部更厚。总体来讲在股指期货退出后，沪深300现货日度收益率的“尖峰厚尾”的现象更加明显。</p>
+<h3 id="2、-平稳性检验"><a href="#2、-平稳性检验" class="headerlink" title="2、 平稳性检验"></a>2、 平稳性检验</h3><p>在进行后续实证分析时，需要对数据列进行处理。选取的样本是否可以使用主要借助平稳性测试（单位根测试）来确定。若时间序列存在单位根，则表示时间序列不稳定。本课题选取ADF测试来测试沪深300指数的日度收益率的平稳性。</p>
+<img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308125755375.png" alt="image-20220308125755375" style="zoom: 67%; text-decoration: underline;">
+
+<center style="color:#C0C0C0;text-decoration:underline">沪深300日度收益率时序图</center>
+
+ 
+
+<p>从上图中可以看出, 所选数据符合金融时间序列的特点，波动集聚性特点突出。为了进一步检验日度收益率的平稳性我们采用ADF检验进一步测算，结果如下</p>
+<img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308130140945.png" alt="image-20220308130140945" style="zoom:30%;">
+
+<center style="color:#C0C0C0;text-decoration:underline">沪深300股指期货推出前ADF检验结果</center>
+
+<img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308130251751.png" alt="image-20220308130251751" style="zoom:30%;">
+
+<center style="color:#C0C0C0;text-decoration:underline">沪深300股指期货推出后ADF检验结果</center>
+
+<p>由上图可知，股指期货推出前ADF检验T&#x3D;-14.115。在1%置信区间下，T&#x3D;3.436，前者小于后者，故该时间序列是平稳的，不存在单位根。股指期货推出后ADF检验T&#x3D;-9.712。在1%置信区间下，T&#x3D;3.433，前者小于后者，故该时间序列是平稳的，也不存在单位根。</p>
+<h3 id="3、-自相关检验"><a href="#3、-自相关检验" class="headerlink" title="3、 自相关检验"></a>3、 自相关检验</h3><p>为了检验沪深300现货日度收益率的自相关性，本课题采用LjungBox Test对其进行检测。</p>
+<img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308130423229.png" alt="image-20220308130423229" style="zoom:50%;">
+
+<center style="color:#C0C0C0;text-decoration:underline">沪深300日度收益率Ljung-Box检验</center>
+
+<p>由上图可知，在延迟超过3时，p值下降到0.05置信度以下，可以认为出现显著的自相关关系，且序列并非白噪声。因此我们可以用ARMA模型来解释沪深300指数日收益率的变化。</p>
+<h2 id="三-ARMA模型定阶与建立"><a href="#三-ARMA模型定阶与建立" class="headerlink" title="(三) ARMA模型定阶与建立"></a>(三) ARMA模型定阶与建立</h2><p>推出沪深300估值期货前现货日度收益率的自相关与偏自相关情况如下图所示，可以看出ACF和PACF都呈现拖尾，在1阶位置就开始基本落在2倍标准差范围。</p>
+<div><table frame="void">    <!--用了<div>进行封装-->
+    <tr>
+        <td><div><center>    <!--每个格子内是图片加标题-->
+            <img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308130514921.png" alt="image-20220308130514921" style="zoom:50%;">
+            <br>    <!--换行-->
+            沪深300股指期货推出前自相关情况    <!--标题1-->
+        </center></div></td>    
+         <td><div><center>    <!--第二张图片-->
+            <img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308130521746.png" alt="image-20220308130521746" style="zoom:50%;">
+            <br>
+            沪深300股指期货推出前偏自相关情况
+        </center></div></td>
+    </tr>
+</table></div>
+
+<p>推出沪深300估值期货后现货日度收益率的自相关与偏自相关情况如下图所示，可以看出与股指期货推出前类似，ACF和PACF都呈现拖尾，在1阶位置就开始基本落在2倍标准差范围。</p>
+<div><table frame="void">    <!--用了<div>进行封装-->
+    <tr>
+        <td><div><center>    <!--每个格子内是图片加标题-->
+            <img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308131958801.png" alt="image-20220308131958801" style="zoom:50%;">
+            <br>    <!--换行-->
+            沪深300股指期货推出后自相关情况    <!--标题1-->
+        </center></div></td>    
+         <td><div><center>    <!--第二张图片-->
+            <img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308132008204.png" alt="image-20220308132008204" style="zoom:50%;">
+            <br>
+            沪深300股指期货推出后偏自相关情况
+        </center></div></td>
+    </tr>
+</table></div>
+
+<p>我们通过遍历不同阶数的ARMA模型，并最终通过AIC以及模型各参数显著性筛选最终模型。为防止参数过多影响模型的稳定性，我们仅遍历1-3阶的ARMA模型。<strong>最终结果显示在股指期货推出前ARMA（2,2）模型的所有参数均显著，且AIC在所有模型中较低。在估值期货推出后ARMA（1,1）模型的所有参数均显著，且AIC在所有模型中较低</strong>，具体模型参数统计请见下表。</p>
+<img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308132155229.png" alt="image-20220308132155229" style="zoom:50%;">
+
+<center style="color:#C0C0C0;text-decoration:underline">沪深300股指期货推出前ARMA（2，2）模型参数结果</center>
+
+<img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308132215958.png" alt="image-20220308132215958" style="zoom:50%;">
+
+<center style="color:#C0C0C0;text-decoration:underline">沪深300股指期货推出后ARMA（1，1）模型参数结果</center>
+
+<p>总结以上我们可以看出，在股指期货推出以前，沪深300指数收益率的时问序列是一个ARMA（2,2）过程，而在推出股指期货之后变成了一个ARMA（1,1）过程 , 也就是说股指期货推出以后，无论是新信息还是旧信息对股票市场的影响都变短了。</p>
+<img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308132336787.png" alt="image-20220308132336787" style="zoom:67%;">
+
+<center style="color:#C0C0C0;text-decoration:underline">沪深300股指期货推出前ARMA（2，2）残差存在自回归性</center>
+
+<img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308132438287.png" alt="image-20220308132438287" style="zoom:67%;">
+
+<center style="color:#C0C0C0;text-decoration:underline">沪深300股指期货推出后ARMA（1，1）残差存在自回归性</center>
+
+<p>通过研究ARMA模型的残差自相关系数、偏自相关系数及QQ图，可以发现无论估值期货推出前后，ARMA模型的残差都存在一定的自回归性。因此需要对残差序列建立GARCH模型。</p>
+<h2 id="四-GARCH-模型建立与检验"><a href="#四-GARCH-模型建立与检验" class="headerlink" title="(四) GARCH 模型建立与检验"></a>(四) GARCH 模型建立与检验</h2><p>由于GARCH（1,1）模型经过很多学者的共同验证，能够非常好的拟合金融时间序列模型，在此我们选取GARCH（1,1）模型进行建模统计。利用GARCH（1,1）模型分别对沪深300股指期货推出之前和推出之后的ARMA模型残差进行建模可得：</p>
+<img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308132537101.png" alt="image-20220308132537101" style="zoom:50%;">
+
+<center style="color:#C0C0C0;text-decoration:underline">期货推出前GARCH（1,1）统计结果</center>
+
+<p>注：由于ARMA模型的残差较小，且python ARCH包中相关函数对1-1000量级的数据拟合效果较好，因此实际操作时我们将残差放大了1000倍，并建立GARCH（1,1）模型。</p>
+<img src="/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/image-20220308132631090.png" alt="image-20220308132631090" style="zoom:50%;">
+
+<center style="color:#C0C0C0;text-decoration:underline">期货推出后GARCH（1,1）统计结果</center>
+
+<p>从上表可以明显的看出, 估计的所有系数都是显著的, 模型很好的拟合了数据，而且估计系数之和小于1，满足平稳性条件，可以写出模型的均值方程和条件方差方程。</p>
+<p>股指期货推出前均值方程为：<br>$$<br>\begin{gathered}<br>R_{t}&#x3D;-0.9527 R_{t-1}-0.8514 R_{t-2}+0.9895 \varepsilon_{t-1}+0.8681 \varepsilon_{t-2}+\varepsilon_{t} \<br>\varepsilon_{t} \sim N\left(0, \sigma_{t}^{2}\right)<br>\end{gathered}<br>$$<br>股指期货推出前条件方差为（残差放大1000倍后）：<br>$$<br>\sigma_{t}^{2}&#x3D;2.4441+0.0667 \varepsilon_{t-1}^{2}+0.9304 \sigma_{t-1}^{2}<br>$$<br>股指期货推出前均值方程为：<br>$$<br>\begin{gathered}<br>R_{t}&#x3D;-0.8839 R_{t-1}+0.9116 \varepsilon_{t-1}+\varepsilon_{t} \<br>\varepsilon_{t} \sim N\left(0, \sigma_{t}^{2}\right)<br>\end{gathered}<br>$$<br>股指期货推出前条件方差为（残差放大1000倍后）：<br>$$<br>\sigma_{t}^{2}&#x3D;1.2621+0.0661 \varepsilon_{t-1}^{2}+0.9302 \sigma_{t-1}^{2}<br>$$</p>
+<h2 id="五-实证分析总结"><a href="#五-实证分析总结" class="headerlink" title="(五) 实证分析总结"></a>(五) 实证分析总结</h2><p>由沪深300日度收益率来看，在期货推出之前其遵循ARMA（2,2）的规律，当期货推出之后，由ARMA（2,2）转变为ARMA（1,1），说明股指期货推出以后，无论是新信息还是旧信息对股票市场的影响都变短了。</p>
+<p>其次从ARMA模型残差建立的GARCH（1,1）模型的参数变化可以看出，期货合约推出之后，无论是常数项，还是参数$\alpha, \beta$均出现了变小的情况，也就是说沪深300现货日度收益率的波动率呈现出降低的趋势。</p>
+<p>在GARCH（1,1）中，$\alpha_{1}$是滞后期残差平方项的系数 ,代表近期市场中信息对股票市场的影响。  $\alpha_{1}$的降低说明期指期货推出后，股票市场中新消息的传播速度并没有提高，反而有所降低。$\beta_{1}$是滞后期条件异方差的系数, 表示旧信息对市场的影响。从实证结果来看，$\beta_{1}$有所降低意味着旧信息对市场的影响也有所降低，持续时间也变短。</p>
+<p>整体来讲，通过对沪深300估值期货推出前后的现货日度收益率建立ARMA-GARCH模型的实证研究我们可以看出沪深300估值期货的推出使得现货市场的波动性有着统计意义上较为显著的降低。</p>
+<h1 id="四、-相关建议"><a href="#四、-相关建议" class="headerlink" title="四、 相关建议"></a>四、 相关建议</h1><h2 id="一-结论"><a href="#一-结论" class="headerlink" title="(一) 结论"></a>(一) 结论</h2><p>国内学者在我国股指期货推出前后做了大量的研究, 得出的结论不尽相同, 本文采用事前事后研究法，通过建立GARCH模型，对比分析股指期货推出前后沪深300指数收益率的波动性变化情况，得出主要结论如下：</p>
+<ol>
+<li><p>沪深300估值期货的推出使得现货市场的波动性有着统计意义上较为显著的降低。</p>
+</li>
+<li><p>沪深300估值期货的推出使得旧信息对市场的影响有所降低，侧面说明信息传播的速度和效率有所提高。</p>
+</li>
+</ol>
+<h2 id="二-相关建议"><a href="#二-相关建议" class="headerlink" title="(二) 相关建议"></a>(二) 相关建议</h2><ol>
+<li><p>进一步健全市场监管体系,不断完善股指期货市场法规：股指期货既是一种风险管理工具又是一种投资手段，投资者利用其套期保值等功能结合现货市场进行风险管理，有利于降低市场风险，完善市场结构，但同时股指期货的做空机制以及高杠杆效应，也为市场带来了巨大的风险，因此需要监管机构建立严格健全的监管制度。2015年股灾后，市场监管趋严，我国股指期货市场运行平稳。从长期来看，监管机构可以借鉴国外成熟市场的先进经验，并结合我国期货与现货市场的发展情况，不断完善股指期货的监管。</p>
+</li>
+<li><p>加强投资者教育，培育机构投资者：加强投资者教育是股指期货充分发挥其功能和促使市场长期稳定发展的基本前提。A股市场较海外市场本身存在中小投资者占比较多的情况，而股指期货专业性强，风险程度较高，致使其投资理念和风险控制较现货市场有很大的区别，投资者缺乏足够的专业知识和应对能力。虽然近些年，机构投资者数量上升，“套利”和“保值”功能在股指期货市场中逐渐显著，但仍需要通过对投资者进行教育，提高投资者对股指期货的认知水平和应对能力，引导投资者建立正确的投资理念和完善的风险管理意识，并鼓励机构投资者入市</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Teng Li
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2022/03/08/%E5%88%A9%E7%94%A8GARCH%E6%A8%A1%E5%9E%8B%E6%B5%8B%E7%AE%97%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E6%B2%AA%E6%B7%B1300%E6%8C%87%E6%95%B0%E7%9A%84%E6%B3%A2%E5%8A%A8%E6%80%A7%E7%A0%94%E7%A9%B6/" title="利用GARCH模型测算沪深300股指期货对沪深300指数的波动性研究">http://example.com/2022/03/08/利用GARCH模型测算沪深300股指期货对沪深300指数的波动性研究/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GARCH%E6%A8%A1%E5%9E%8B/" rel="tag"># GARCH模型</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/04/%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E4%BD%BF%E7%94%A8hexo-image-link%E7%9A%84%E9%97%AE%E9%A2%98/" rel="prev" title="博客上传图片使用hexo-image-link的问题">
+      <i class="fa fa-chevron-left"></i> 博客上传图片使用hexo-image-link的问题
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E6%B2%AA%E6%B7%B1300%E4%BC%B0%E5%80%BC%E6%9C%9F%E8%B4%A7%E5%AF%B9%E7%8E%B0%E8%B4%A7%E5%B8%82%E5%9C%BA%E6%B3%A2%E5%8A%A8%E6%80%A7%E5%BD%B1%E5%93%8D%E6%9C%BA%E5%88%B6%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">一、 沪深300估值期货对现货市场波动性影响机制分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%86%85%E5%9C%A8%E6%9C%BA%E5%88%B6"><span class="nav-number">1.1.</span> <span class="nav-text">(一) 内在机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%A4%96%E5%9C%A8%E6%9C%BA%E5%88%B6"><span class="nav-number">1.2.</span> <span class="nav-text">(二) 外在机制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E7%9B%B8%E5%85%B3%E7%90%86%E8%AE%BA%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">二、 相关理论模型概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E7%9B%B8%E5%85%B3%E7%90%86%E8%AE%BA%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.</span> <span class="nav-text">(一) 相关理论模型简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-ARCH%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.1.</span> <span class="nav-text">1. ARCH模型简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-GARCH%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.2.</span> <span class="nav-text">2. GARCH模型简介</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%B2%AA%E6%B7%B1300%E8%82%A1%E6%8C%87%E6%9C%9F%E8%B4%A7%E5%AF%B9%E7%8E%B0%E8%B4%A7%E5%B8%82%E5%9C%BA%E6%B3%A2%E5%8A%A8%E6%80%A7%E5%BD%B1%E5%93%8D%E7%9A%84%E5%AE%9E%E8%AF%81%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">三、沪深300股指期货对现货市场波动性影响的实证分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E6%A0%B7%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%9A%84%E9%80%89%E5%8F%96"><span class="nav-number">3.1.</span> <span class="nav-text">(一) 样本数据的选取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90%E5%8F%8A%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">(二) 数据来源及处理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81-%E6%8F%8F%E8%BF%B0%E6%80%A7%E7%BB%9F%E8%AE%A1"><span class="nav-number">3.2.1.</span> <span class="nav-text">1、 描述性统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81-%E5%B9%B3%E7%A8%B3%E6%80%A7%E6%A3%80%E9%AA%8C"><span class="nav-number">3.2.2.</span> <span class="nav-text">2、 平稳性检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81-%E8%87%AA%E7%9B%B8%E5%85%B3%E6%A3%80%E9%AA%8C"><span class="nav-number">3.2.3.</span> <span class="nav-text">3、 自相关检验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-ARMA%E6%A8%A1%E5%9E%8B%E5%AE%9A%E9%98%B6%E4%B8%8E%E5%BB%BA%E7%AB%8B"><span class="nav-number">3.3.</span> <span class="nav-text">(三) ARMA模型定阶与建立</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-GARCH-%E6%A8%A1%E5%9E%8B%E5%BB%BA%E7%AB%8B%E4%B8%8E%E6%A3%80%E9%AA%8C"><span class="nav-number">3.4.</span> <span class="nav-text">(四) GARCH 模型建立与检验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%AE%9E%E8%AF%81%E5%88%86%E6%9E%90%E6%80%BB%E7%BB%93"><span class="nav-number">3.5.</span> <span class="nav-text">(五) 实证分析总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E7%9B%B8%E5%85%B3%E5%BB%BA%E8%AE%AE"><span class="nav-number">4.</span> <span class="nav-text">四、 相关建议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E7%BB%93%E8%AE%BA"><span class="nav-number">4.1.</span> <span class="nav-text">(一) 结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E7%9B%B8%E5%85%B3%E5%BB%BA%E8%AE%AE"><span class="nav-number">4.2.</span> <span class="nav-text">(二) 相关建议</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Teng Li"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Teng Li</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/teng416" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;teng416" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:li_teng416@sina.com" title="E-Mail → mailto:li_teng416@sina.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+
+
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teng Li</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'l4BBQPCPzlSXatg6H3PMGNAQ-gzGzoHsz',
+      appKey     : 'u59XTa1BYg1wJyMxl2nKEy8c',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
