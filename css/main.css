@@ -1168,7 +1168,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff6047;
+  background: #da3b05;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2341,13 +2341,6 @@ mjx-container + br {
     padding-right: 0;
     width: auto;
   }
-}
-body {
-  background-image: url("../images/背景图.jpeg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: 50% 50%;
-  background-size: 100% 100%;
 }
 .site-brand-container {
   background: #222;
