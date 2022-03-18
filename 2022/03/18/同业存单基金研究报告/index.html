@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|STZhongsong:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="这篇是受机构委托写的一个小课题。主要介绍了近期新出的一类可以用于现金理财的同业存单基金。当前市场中有同业存单基金6只，均跟踪中证同业存单AAA指数。2021年12月我国首批6只同业存单指数基金获批，并发行上市。总募集金额152.38亿元。同业存单指数基金未来或作为新的低波动理财工具承接部分货币基金与现金管理类理财产品的投资需求，未来市场前景广阔。同业存单基金拥有高于货币基金的收益率，由于主要投资标">
+<meta property="og:type" content="article">
+<meta property="og:title" content="同业存单基金研究报告">
+<meta property="og:url" content="http://example.com/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/index.html">
+<meta property="og:site_name" content="Teng&#39;s Blog">
+<meta property="og:description" content="这篇是受机构委托写的一个小课题。主要介绍了近期新出的一类可以用于现金理财的同业存单基金。当前市场中有同业存单基金6只，均跟踪中证同业存单AAA指数。2021年12月我国首批6只同业存单指数基金获批，并发行上市。总募集金额152.38亿元。同业存单指数基金未来或作为新的低波动理财工具承接部分货币基金与现金管理类理财产品的投资需求，未来市场前景广阔。同业存单基金拥有高于货币基金的收益率，由于主要投资标">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/Screenshot%202022-03-18%20at%2013.53.52.png">
+<meta property="og:image" content="http://example.com/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318135202715.png">
+<meta property="og:image" content="http://example.com/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318145114605.png">
+<meta property="og:image" content="http://example.com/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318145139882.png">
+<meta property="og:image" content="http://example.com/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318145308330.png">
+<meta property="og:image" content="http://example.com/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318145318059.png">
+<meta property="og:image" content="http://example.com/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318145700886.png">
+<meta property="og:image" content="http://example.com/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318145709332.png">
+<meta property="og:image" content="http://example.com/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318145847945.png">
+<meta property="og:image" content="http://example.com/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318145854059.png">
+<meta property="article:published_time" content="2022-03-18T05:36:29.000Z">
+<meta property="article:modified_time" content="2022-03-18T07:38:06.517Z">
+<meta property="article:author" content="Terrence">
+<meta property="article:tag" content="基金研究">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/Screenshot%202022-03-18%20at%2013.53.52.png">
+
+<link rel="canonical" href="http://example.com/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>同业存单基金研究报告 | Teng's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Teng's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">生活明朗，万物可爱</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">7</span></a>
+
+  </li>
+        <li class="menu-item menu-item-guestbook">
+
+    <a href="/guestbook" rel="section"><i class="fa fa-comment fa-fw"></i>留言</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Terrence">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Teng's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          同业存单基金研究报告
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-03-18 13:36:29 / 修改时间：15:38:06" itemprop="dateCreated datePublished" datetime="2022-03-18T13:36:29+08:00">2022-03-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E5%B7%A5/" itemprop="url" rel="index"><span itemprop="name">金工</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>15k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>19 分钟</span>
+            </span>
+            <div class="post-description">这篇是受机构委托写的一个小课题。主要介绍了近期新出的一类可以用于现金理财的同业存单基金。当前市场中有同业存单基金6只，均跟踪中证同业存单AAA指数。2021年12月我国首批6只同业存单指数基金获批，并发行上市。总募集金额152.38亿元。同业存单指数基金未来或作为新的低波动理财工具承接部分货币基金与现金管理类理财产品的投资需求，未来市场前景广阔。同业存单基金拥有高于货币基金的收益率，由于主要投资标的为银行间同业存单，其风险介于货币基金与债券基金之间，即能够为投资者提供高于货币基金的收益又能有效控制回撤，其波动性要显著低于债券基金。相较于现金管理类理财产品，同业存单基金采用市价法估值，更加符合当前监管要求与未来发展趋势。截止2022年2月25日，除已上市的6只产品外，仍有87只同业存单基金向证监会递交了发起申请等待批复，未来发展前景广阔。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="一、-同业存单指数基金现状"><a href="#一、-同业存单指数基金现状" class="headerlink" title="一、 同业存单指数基金现状"></a>一、 同业存单指数基金现状</h1><h2 id="一-同业存单指数基金定义"><a href="#一-同业存单指数基金定义" class="headerlink" title="(一)  同业存单指数基金定义"></a>(一)  同业存单指数基金定义</h2><p>根据基金合同，同业存单指数基金是一种被动指数基金。主要采用抽样复制和动态最优化的方法，投资于标的指数中具有代表性和流动性的成份券和备选成份券，或选择非成份券作为替代，构造与标的指数风险收益特征相似的资产组合，以实现对标的指数的有效跟踪[<a href="#_ftn1">1]</a>。</p>
+<h2 id="二-同业存单指数基金规模与业绩"><a href="#二-同业存单指数基金规模与业绩" class="headerlink" title="(二)  同业存单指数基金规模与业绩"></a>(二)  同业存单指数基金规模与业绩</h2><p>2021年11月23日，根据  证监会网站披露的消息，共有6家基金公司（富国基金、鹏华基金、南方基金、中航基金、华富基金、惠升基金）的6只同业存单AAA指数7天持有期证券指数基金获批。该6只基金于2021年12月3日开始募集，基金基本信息如下。</p>
+<img src="/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/Screenshot 2022-03-18 at 13.53.52.png" alt="Screenshot 2022-03-18 at 13.53.52">
+
+<p>从发行规模来看，6只基金的募资规模上限均为100亿元，且最终发行规模均未达上限。除南方基金的同业存单指数基金发行规模最大外，其余基金公司的同类产品发信规模相对较小。</p>
+<img src="/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318135202715.png" class title="image-20220318135202715">
+
+<p>6只同业存单指数基金产品中，富国、鹏华、惠升基金的产品收益率领跑，中航、华福、南方基金的收益率稍低。其中中航基金的同类产品风控更好，基本无回撤。</p>
+
+
+<h2 id="三-同业存单基金购买客户构成"><a href="#三-同业存单基金购买客户构成" class="headerlink" title="(三)  同业存单基金购买客户构成"></a>(三)  同业存单基金购买客户构成</h2><p>根据基金招募说明书，基金的发售对象为符合法律法规规定的可投资于证券投资基金的个人投资者 、机构投资者、合格境外投资者及法律法规或中国证监会允许购买证券投资基金的其他投资人。暂不向金融机构的自营账户销售[<a href="#_ftn2">2]</a>。截至22年3月11日，上述基金尚未公布具体持有人占比。</p>
+<h1 id="二、-竞品分析"><a href="#二、-竞品分析" class="headerlink" title="二、 竞品分析"></a>二、 竞品分析</h1><p>通过整理证监会对现金管理类理财产品、货币基金和同业存单AAA指数基金的相关规定，我们可以发现三种投资产品分别在投资范围、组合期限、投资集中度、估值方式等方面存在较为显著的区别。下表为海通证券整理的三种投资产品各方面的具体区别。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>现金管理类理财产品</strong></th>
+<th><strong>货币基金</strong></th>
+<th><strong>同业存单AAA指数基金</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>投资范围</td>
+<td><strong>应当投资于以下金融工具：</strong>现金；期限在1年以内的银行存款、债券回购、中央银行票据、同业存单；剩余期限在397天以内(含397天)的债券、在银行间市场和证券交易所市场发行的资产支持证券……其他具有良好流动性的货币市场工具。<br><strong>不得投资于以下金融工具：</strong>股票;可转换债券、可交换债券;以定期存款利率为基准利率的浮动利率债券，已进入最后一个利率调整期的除外;信用等级在AA+以下的债券资产支持证券……禁止投资的其他金融工具。</td>
+<td><strong>货币市场基金应当投资于以下金融工具：</strong>现金;期限在1 年以内(含1 年)的银行存款、债券回购、中央银行票据、同业存单;剩余期限在397 天以内(含397 天)的债券、非金融企业债务融资工具、资产支持证券……其他具有良好流动性的货币市场工具。<br><strong>货币市场基金不得投资于以下金融工具：</strong>股票;可转换债券、可交换债券;以定期存款利率为基准利率的浮动利率债券，已进入最后一个利率调整期的除外;信用等级在AA+以下的债券与非金融企业债务融资工具……禁止投资的其他金融工具。</td>
+<td><strong>主要投资于：</strong>标的指数的成份券及备选成份券，还可投资于非属成份券及备选成份券的其他同业存单、债券、短期融资券(含超短期融资券)、中期票据等非金融企业债务融资工具、资产支持证券、债券回购、银行存款、现金等货币市场工具等; <br><strong>不投资于：</strong>股票，可转换债券(可分离交易可转债的纯债部分除外)、可交换债券。</td>
+</tr>
+<tr>
+<td>组合期 限</td>
+<td>商业银行、理财公司每只现金管理类产品投资组合的平均剩余期限不得超过120天，平均剩余存续期限不得超过240天。</td>
+<td>货币市场基金投资组合的平均剩余期限不得超过120 天，平均剩余存续期不得超过240天。</td>
+<td>投资的债券、非金融企业债务融资工具、资产支持证券剩余期限或回售期限在397天以内(含397天)；<br>投资的银行存款、债券回购、中央银行票据、同业存单的期限在1年以内(含1 年)。</td>
+</tr>
+<tr>
+<td>投资集中度</td>
+<td>每只现金管理类产品投资于同一机构发行的债券及其作为原始权益人的资产支持证券的比例合计不得超过该产品资产净值的10%<br>每只现金管理类产品投资于有固定期限银行存款的比例合计不得超过该产品资产净值的30%每只现金管理类产品投资于主体信用评级为AAA的同一商业银行的银行存款、同业存单占该产品资产净值的比例合计不得超过20%</td>
+<td>同一机构发行的债券、非金融企业债务融资工具及其作为原始权益人的资产支持证券占基金资产净值的比例合计不得超过10%<br>货币市场基金投资于有固定期限银行存款的比例，不得超过基金资产净值30%。货币市场基金投资于具有基金托管人资格的同一商业银行的银行存款、同业存单占基金资产净值的比例合计不得超20%，投资于不具有基金托管人资格的同一商业银行的银行存款、同业存单占基金资产净值的比例合计不得超5%。</td>
+<td>本基金投资于同业存单的比例不低于基金资产的 80% ；本基金投资于标的指数成份券和备选成份券的比例不低于非现金基金资产的 80%本基金持有的现金或者到期日在一年以内的政府债券不低于基金资产净值的 50 %，其中现金不包括结算备付金、存出保证金、应收申购款等。</td>
+</tr>
+<tr>
+<td>杠杆要 求</td>
+<td>每只现金管理类产品持有不低于该产品资产净值5%的现金、国债、中央银行票据、政策性 金融债券; <br>每只现金管理类产品持有不低于该产品资产净值10%的现金、国债、中央银行票据、政策性金融债券以及五个交易日内到期的其他金融工具;…… <br>每只现金管理类产品的杠杆水平不得超过 120%，发生巨额赎回、连续3个交易日累计赎回 20%以上或者连续5个交易日累计赎回30%以上的情形除外。</td>
+<td>现金、国债、中央银行票据、政策性金融债券……比例合计不得低于5%; <br>现金、国债、中央银行票据、政策性金融债券以及五个交易日内到期的其他金融工具占基金资产净值的比例合计不得低于10%; <br>到期日在10 个交易日以上的逆回购、银行定期存款等流动性受限资产投资占基金资产净值的比例合计不得超过30% <br>除发生巨额赎回、连续3个交易日累计赎回 20%以上或者连续5个交易日累计赎回30%以上的 情形外，债券正回购的资金余额占基金资产净值的比例不得超过20%。</td>
+<td>持有的现金或者到期日在一年以内的政府债 券不低于基金资产净值的5%，其中现金不包括结算备付金、存出保证金、应收申购款等; <br>本基金主动投资于流动性受限资产的市值合 计不得超过基金资产净值的10%; <br>基金资产总值不得超过基金资产净值的140%。</td>
+</tr>
+<tr>
+<td>估 值</td>
+<td>可采用“摊余成本法+影子定价”</td>
+<td>可采用“摊余成本法+影子定价”</td>
+<td>市价法</td>
+</tr>
+<tr>
+<td>跟踪误 差</td>
+<td>当影子定价确定的现金管理类产品资产净值与摊余成本法计算的资产净值正偏离度绝对值达到0.5%时……当负偏离度绝对值连续两个交易日超 过0.5%时……暂停接受所有赎回申请并终止产品 合同进行财产清算等措施。</td>
+<td>当正偏离度绝对值达到0.5%时，当负偏离度绝对值连续两个交易日超过0.5%时暂停接受所有赎回申请并终止基金合同进行财产清算等措施。</td>
+<td>力争将日均跟踪偏离度的绝对值控制在0.2%以内，年化跟踪误差控制在2%以内。</td>
+</tr>
+<tr>
+<td>投资者集中 度</td>
+<td>当前10名投资者的持有份额合计超过现金管理类产品总份额的50%时……现金、国债、中央 银行票据、政策性金融债券以及5个交易日内到期的其他金融工具占该产品资产净值的比例合计不得低于30%;<br>当前10名投资者的持有份额合计超过现金管理类产品总份额的20%时……现金、国债、中央 银行票据、政策性金融债券以及5个交易日内到期 的其他金融工具占该产品资产净值的比例合计不得低于20%</td>
+<td>当货币市场基金前10 名份额持有人的持有 份额合计超过基金总份额的50%时……现金、国债、中央银行票据、政策性金融债券以及5个交易日内到期的其他金融工具占基金资产净值的比例合计不得低于30%。 <br>当货币市场基金前10名份额持有人的持有份额合计超过基金总份额的20%时……现金、国债、中央银行票据、政策性金融债券以及5个交易内到期的其他金融工具占基金资产净值的比例合<br>计不得低于20%。</td>
+<td>单一投资者持有基金份额数不得达到或超过 基金份额总数的50%(在基金运作过程中因基金份额赎回等情形导致被动达到或超过50%的除外) ；<br>本基金单一投资者单日认购金额不超过1000万元(公募资产管理产品除外) 。</td>
+</tr>
+</tbody></table>
+<p><strong>可以看出同业存单基金与现金理财与货币基金主要存在以下方面的区别。</strong></p>
+<p><strong>1.</strong>  <strong>同业存单基金的存单投资集中度更高。</strong>从投资范围上来说，三者都可对同业存单、短期债券、资产支持债券等金融产品进行投资，但同业存单基金主要的投资方向依旧是同业存单，且要求对同业存单的投资比例不低于基金资产的80%；投资于标的指数成份券和备选成份券的比例不得低于非现金基金资产的 80%。</p>
+<p><strong>2.</strong>  <strong>杠杆要求较为宽松但流动性要求更加严格。</strong>现金理财与货币基金要求每只现金管理类产品持有不低于该产品资产净值5%的现金、国债、中央银行票据、政策性 金融债券。而同业存单基金要求持有不少于基金资产净值5%的现金或到期日在1年以内的政府债券。整体的流动性要求更加严格。其次现金理财的杠杆上限为120%，而同业存单基金的杠杆上限放宽至140%。</p>
+<p><strong>3.</strong>  <strong>同业存单基金久期更长。</strong>现金理财与货币基金规定久期不超过120天，平均剩余存续期限不得超过 240 天。而同业存单基金跟踪的同业存单AAA指数的修正久期为0.43，对应165天。</p>
+<p><strong>4.</strong>  <strong>估值方法不同。</strong>现金理财和货币基金主要采用的是摊余成本法进行会计核算。而同业存单基金主要采用市价法进行估值，更加符合监管的要求。</p>
+<p><strong>5.  投资者集中度与规模控制。</strong>同业存单基金要求单一投资者持有基金份额数不得达到或超过基金份额总数的50%、单日认购金额不超过1000 万元，并明确规定在募集期内规模上限为100亿元。于此对应的现金理财和货币基金主要是通过将规模与风险准备金挂钩，实现规模的控制，避免随意新发基金。</p>
+<h1 id="三、-市场前景与市场容量预判"><a href="#三、-市场前景与市场容量预判" class="headerlink" title="三、 市场前景与市场容量预判"></a>三、 市场前景与市场容量预判</h1><p><strong>通过第二部分的对现金管理类理财产品与货币基金的对比我们认为同业存单基金未来前景广阔</strong>，主要原因如下：</p>
+<ol>
+<li><p><strong>收益优势较为明显。</strong>通过测算我们发现截止2022 年3月11日，已经发行的6只同业存单基金的平均年化收益为2.68%（简单平均），其跟踪的同业存单AAA指数近3年化收益率为2.99%，对比中证货币基金指数近3年年化收益2.37%可以看出同业存单基金在收益率上存在较为显著的优势。</p>
+</li>
+<li><p><strong>市价法估值符合未来发展方向。</strong>资管新规要求未来摊余成本法估值要逐步退出历史舞台，为了打破刚性兑付，市价法估值的金融产更加符合当前的监管要求和未来中国金融市场的发展方向。</p>
+</li>
+<li><p><strong>各家基金公司积极排队布局。</strong>截止2022年3月11日，证监会官网显示，累计余100家基金公司争相申请布局同业存单指数基金，足见基金行业存单指数基金的重视。</p>
+</li>
+</ol>
+<p>目前已经发行的6只同业存单基金的募资规模不大，主要原因是在于同期有大量的新发基金，同业存单指数基金并没有重点产品去销售和宣传，也没有放在比较好的发行档期，只是作为比较普通的基金产品去发行。且其需要锁定7日的要求让投资者接受还需要一定时间。但是以其相较于货币基金与现金管理类理财产品的优势，同业存单基金很有可能成为未来许多家庭现金管理的升级版工具。</p>
+<p>市场容量方面，我国目前同业存单存量在12.62万亿元左右，足够满足同业存单基金的配置需求。作为新兴的基金产品，我们预测同业存单基金由于存在收益优势，会承接一部分货币基金的投资需求；同时，由于资管新规对于现金类理财产品的各种限制要求，亦会吸引分流部分现金管理类理财产品的投资需求。</p>
+<h1 id="四、-同业存单指数基金成分存单的选择"><a href="#四、-同业存单指数基金成分存单的选择" class="headerlink" title="四、 同业存单指数基金成分存单的选择"></a>四、 同业存单指数基金成分存单的选择</h1><p>作为被动指数基金，同业存单AAA指数基金的主要投资于标的指数的成分券以及备选成分券。但是为了更好的实现投资目标，同业存单AAA基金还可以投资于不属于成分券及备选成分券的其他同业存单、债券、短期融资券、中期票据等非金融企业业债务融资工具、资产支持证券、债券回购、银行存款、现金等货币市场工具等，以及法律法规或中国证监会允许基金投资的其他金融工具。</p>
+<h2 id="一-同业存单AAA指数编制方法介绍"><a href="#一-同业存单AAA指数编制方法介绍" class="headerlink" title="(一)  同业存单AAA指数编制方法介绍"></a>(一)  同业存单AAA指数编制方法介绍</h2><p><strong>根据《中证同业存单AAA指数编制方法》，中证同业存单</strong> <strong>AAA</strong> <strong>指数样本券由在银行间市场上市的主体评级为</strong> AAA、发行期限 <strong>1</strong> <strong>年及以下、上市时间</strong> <strong>7</strong> <strong>天及以上的同业存单组成。</strong>该指数以2014年12月31日为基日，以100为基点进行编制，采用市值集权计算，以反映信用评级为AAA的同业存单的整体表现。</p>
+<p>中证同业存单AAA指数的成分券样本由满足以下条件债券构成：</p>
+<p>a)  债券种类：在银行间市场上市的同业存单，债券币种为人民币；</p>
+<p>b)  发行期限：1 年及以下；</p>
+<p>c)  上市期限：7 天及以上；</p>
+<p>d)  主体评级：AAA；</p>
+<p>e)  付息方式：贴现式、或固定利率付息、或一次还本付息</p>
+<p>中证同业存单 AAA 指数采用派许加权综合价格指数方法计算，计算公式为：<br>$$<br>\text { 报告期指数 }&#x3D;\frac{\text { 报告期样本债券总市值 }+\text { 报告期样本券派息及在投资 }}{\text { 除数 }} \times 100<br>$$<br>其中，报告期样本债券总市值 $&#x3D;\sum$ 全价 $\times$ 发行量 ，全价 $&#x3D;$ 净价 $+$ 应计利息。<strong>中证同业存单</strong> <strong>AAA</strong> <strong>指数样本每个交易日自动调整一次，满足选样条件的债券当日起计入指数，不满足选样条件的债券次日起剔除出指数。</strong></p>
+<h2 id="二-同业存单基金追踪指数方法介绍"><a href="#二-同业存单基金追踪指数方法介绍" class="headerlink" title="(二)  同业存单基金追踪指数方法介绍"></a>(二)  同业存单基金追踪指数方法介绍</h2><p>被动指数基金跟踪指数目前主要存在两种方法：完全复制法与优化复制法。</p>
+<p><strong>完全复制法试图采用完全复制目标指数样本股的方法构建跟踪组合</strong>，即按照成分股在目标指数中的权重确定购买比例买入所有成分股，相对于其他复制方法而言，这种方法简单明了，构建的指数组合与目标指数之间保持高度一致，可以较好地实现指数的代表性和投资风险的分散性。但这种方法主要适合于成分股数量相对较少或成分股数量虽较多但流动性较好的指数。</p>
+<p><strong>优化复制法则是根据预先设定的标准剔除部分成分股并对其在组合中的相对权重进行优化再配置，从而使得构建出来的指数组合的跟踪成本及其与目标指数之间的跟踪误差控制在可以接受的范围内。</strong>优化复制法主要解决的问题是，投资人可以主动回避流动性较差、有财务或法律风险或者持有该股票受到法律限制的股票。此时，投资人可以采用具有代表性的替代策略，从指数成分股中选择与拟替代的成分股行业相近、定价特征类似、收益率相关性较高、具有代表性的个股来替代部分成分股。<strong>具体来讲，优化复制法又可以分为两种：</strong></p>
+<p><strong>1）优化抽样法</strong>。<strong>主要通过对选定目标指数中各成分股的历史数据和相关指标进行分析，采用优化模型来寻找一个数量较小和误差范围可控的投资组合，使得该投资组合相对目标指数的跟踪误差最小</strong>。</p>
+<p><strong>2）分层抽样法。分层抽样法实际上是在优化抽样的基础上进一步添加了约束条件，也可以看作是两阶段优化方法，即第一阶段是确定大类权重，这一阶段十分重要，要将市场上所有证券按照特征分成20至30个行业（往往借鉴申万、中信的一级行业分类），以不同行业在目标指数中所占的权重来决定在该行业类别内的投资量；第二阶段是具体股票权重的优化再配置，利用最优化方法计算每个大类内股票的权重。</strong></p>
+<p>由于同业存单基金所追踪的成分券包含部分流动性不佳、被限制投资的同业存单，<strong>目前成立的6只同业存单AAA基金均采用优化复制法对目标指数进行跟踪。对于市场流动性不足、因法律法规原因个别成份券被限制投资等情况，通过投资其他成份券、非成份券等方式进行替代</strong>。</p>
+<h1 id="五、-同业存单指数基本情况介绍"><a href="#五、-同业存单指数基本情况介绍" class="headerlink" title="五、 同业存单指数基本情况介绍"></a>五、 同业存单指数基本情况介绍</h1><h2 id="一-同业存单指数基本构成"><a href="#一-同业存单指数基本构成" class="headerlink" title="(一)  同业存单指数基本构成"></a>(一)  同业存单指数基本构成</h2><p>我国目前同业存单指数主要由中证公司编制的中证同业存单细分系列指数构成。具体基本信息如下：</p>
+
+
+<p>目前来看最受基金公司追捧的依旧是同业存单AAA指数（931059.CSI），根据证监会公布的截止2022年2月25日基金申请公示看，除已获准发行的6只同业存单指数基金外，仍有87只类似基金产品等待获批。其中82只基金跟踪中证同业存单AAA指数且最短持有期为7天，其余5只基金分别为高信用等级同业存单指数基金（中金）、普通同业存单基金7天持有（博时、浙商、嘉合）和普通同业存单基金30天持有（汇添富），具体申请日期及受理日期请参见报告附录。</p>
+<h2 id="二-同业存单指数业绩对比与表现"><a href="#二-同业存单指数业绩对比与表现" class="headerlink" title="(二)  同业存单指数业绩对比与表现"></a>(二)  同业存单指数业绩对比与表现</h2><p>同业存单系列指数的基准日均为2014年12月31日，故各个指数之间可以直接横向对比。</p>
+
+
+<p>由上表可以看出，同业存单指数的收益率基本在3%以上波动。整体收益表现优于货币基金（近5年年华收益率2.96%）。</p>
+<img src="/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318145114605.png" class title="image-20220318145114605">
+
+<p>由上图可知，受流动性溢价影响，剩余期限较长的同业存单相较于短期存单具有更高的风险，故其享有更高的收益率。</p>
+<img src="/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318145139882.png" class title="image-20220318145139882">
+
+<p>从违约风险角度，国有大型银行的违约风险最低、股份制银行次之，城农商行最高，故城农商行发行的同业存单收益率表现最好，国有大型银行的同业存单收益率最低。</p>
+<h2 id="三-中证同业存单AAA指数成分券构成"><a href="#三-中证同业存单AAA指数成分券构成" class="headerlink" title="(三)  中证同业存单AAA指数成分券构成"></a>(三)  中证同业存单AAA指数成分券构成</h2><p>中证同业存单指数的成分股日度更新。截止2022年3月11日，该指数共有成分券10130只。其中权重最高的10只同业存单信息如下：</p>
+
+
+<div><table frame="void">    <!--用了<div>进行封装-->
+    <tr>
+        <td><div><center>    <!--每个格子内是图片加标题-->
+            <img src="/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318145308330.png" alt="image-20220318145308330" style="zoom:70%;">
+            <br>    <!--换行-->
+            中证同业存单AAA指数成分券发行人构成    <!--标题1-->
+        </center></div></td>    
+         <td><div><center>    <!--第二张图片-->
+            <img src="/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318145318059.png" alt="image-20220318145318059" style="zoom:70%;">
+            <br>
+            中证同业存单AAA指数成分全剩余期限构成
+        </center></div></td>
+    </tr>
+</table></div>
+
+<p>上图可知同业存单AAA指数成分券从发行人角度分析主要由股份制银行、国有大型银行和城商行发行的同业AAA级剩余期限小于1年的同业存单组成。其中剩余期限小于6个月的同业存单占比约为60%，剩余期限大于6个月小于1年的同业存单占比约为40%。</p>
+<h1 id="六、-同业存单基金、货币基金与短债基金业绩的比较"><a href="#六、-同业存单基金、货币基金与短债基金业绩的比较" class="headerlink" title="六、 同业存单基金、货币基金与短债基金业绩的比较"></a>六、 同业存单基金、货币基金与短债基金业绩的比较</h1><p>根据我们之前的大致测算，同业存单基金在年化收益上相对于货币基金存在一定优势。本部分将从收益、回撤等角度详细测算同业存单基金与货币基金的收益特征和区别。</p>
+<p>由于目前上市的6只同业存单基金运行时间较短，考虑到同业存单基金相对于同业存单AAA指数的日均跟踪误差小于0.2%，我们采用同业存单AAA指数与中证货币基金指数进行测算分析。</p>
+<div><table frame="void">    <!--用了<div>进行封装-->
+    <tr>
+        <td><div><center>    <!--每个格子内是图片加标题-->
+        <img src="/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318145700886.png" alt="image-20220318145700886" style="zoom:70%;">
+            <br>    <!--换行-->
+            同业存单AAA指数与货币基金指数净值对比    <!--标题1-->
+        </center></div></td>    
+         <td><div><center>    <!--第二张图片-->
+            <img src="/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318145709332.png" alt="image-20220318145709332" style="zoom:70%;">
+            <br>
+            同业存单AAA指数与货基指数滚动1年最大回撤
+        </center></div></td>
+    </tr>
+</table></div>
+
+<p>整体来讲同业存单指数相对于货币基金指数来说收益更强，最大回撤相对于中证短债更低。货基由于采用摊余成本法不存在回撤，每日净值固定增长；同业存单指数与中证短债在特定时段存在一定回撤，不过同业存单指数整体回撤基本可以控制在0.2%以内，显著低于中证短债。</p>
+<div><table frame="void">    <!--用了<div>进行封装-->
+    <tr>
+        <td><div><center>    <!--每个格子内是图片加标题-->
+        <img src="/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318145847945.png" alt="image-20220318145847945" style="zoom:70%;">
+            <br>    <!--换行-->
+            同业存单AAA指数与货基指数各年度收益率    <!--标题1-->
+        </center></div></td>    
+          <td><div><center>    <!--第二张图片-->
+            <img src="/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/image-20220318145854059.png" alt="image-20220318145854059" style="zoom:70%;">
+            <br>
+            同业存单AAA指数对货基指数各年度超额收益率
+        </center></div></td>
+    </tr>
+</table></div>
+
+<p>同业存单AAA指数自2017年以来每年均可击败货币基金指数，超额收益基本维持在0.5%-1%左右。相对于中证短债来说，同业存单AAA指数的超额收益近几年为正，但出现了一定下降趋势。</p>
+<h1 id="七、-附录：证监会同业存单基金申请公示表（截止2022年2月25日）"><a href="#七、-附录：证监会同业存单基金申请公示表（截止2022年2月25日）" class="headerlink" title="七、 附录：证监会同业存单基金申请公示表（截止2022年2月25日）"></a>七、 附录：证监会同业存单基金申请公示表（截止2022年2月25日）</h1><table>
+<thead>
+<tr>
+<th><strong>序号</strong></th>
+<th><strong>基金管理人</strong></th>
+<th><strong>申请事项</strong></th>
+<th><strong>申请材料接收日</strong></th>
+<th><strong>受理决定或不予受理决定日</strong></th>
+<th><strong>第一次反馈意见日</strong></th>
+<th><strong>决定</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>中航</td>
+<td>中航中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;9&#x2F;30</td>
+<td>2021-10-13（受理）</td>
+<td></td>
+<td>2021&#x2F;11&#x2F;23</td>
+</tr>
+<tr>
+<td>2</td>
+<td>南方</td>
+<td>南方中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;9&#x2F;30</td>
+<td>2021-10-13（受理）</td>
+<td></td>
+<td>2021&#x2F;11&#x2F;23</td>
+</tr>
+<tr>
+<td>3</td>
+<td>鹏华</td>
+<td>鹏华中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;9&#x2F;30</td>
+<td>2021-10-13（受理）</td>
+<td></td>
+<td>2021&#x2F;11&#x2F;23</td>
+</tr>
+<tr>
+<td>4</td>
+<td>富国</td>
+<td>富国中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;9&#x2F;30</td>
+<td>2021-10-13（受理）</td>
+<td></td>
+<td>2021&#x2F;11&#x2F;23</td>
+</tr>
+<tr>
+<td>5</td>
+<td>平安</td>
+<td>平安元宝中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;9&#x2F;30</td>
+<td>2021-10-13（受理）</td>
+<td>2021&#x2F;11&#x2F;29</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>惠升</td>
+<td>惠升中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;9&#x2F;30</td>
+<td>2021-10-13（受理）</td>
+<td></td>
+<td>2021&#x2F;11&#x2F;23</td>
+</tr>
+<tr>
+<td>7</td>
+<td>中金</td>
+<td>中金中债-高信用等级同业存单指数7天持有期发起式证券投资基金</td>
+<td>2021&#x2F;9&#x2F;30</td>
+<td>2021-10-13（受理）</td>
+<td>2021&#x2F;12&#x2F;1</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>华富</td>
+<td>华富中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;9&#x2F;30</td>
+<td>2021-10-13（受理）</td>
+<td></td>
+<td>2021&#x2F;11&#x2F;23</td>
+</tr>
+<tr>
+<td>9</td>
+<td>招商</td>
+<td>招商中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;9&#x2F;30</td>
+<td>2021-10-13（受理）</td>
+<td>2021&#x2F;12&#x2F;1</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>华夏</td>
+<td>华夏中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;9&#x2F;30</td>
+<td>2021-10-13（受理）</td>
+<td>2021&#x2F;12&#x2F;1</td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>淳厚</td>
+<td>淳厚中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;9&#x2F;30</td>
+<td>2021-10-13（受理）</td>
+<td>2021&#x2F;12&#x2F;1</td>
+<td></td>
+</tr>
+<tr>
+<td>12</td>
+<td>兴银</td>
+<td>兴银中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;9&#x2F;30</td>
+<td>2021-10-13（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td>长城</td>
+<td>长城中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>14</td>
+<td>创金合信</td>
+<td>创金合信中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>15</td>
+<td>民生加银</td>
+<td>民生加银中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>16</td>
+<td>英大</td>
+<td>英大中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>17</td>
+<td>景顺长城</td>
+<td>景顺长城中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>18</td>
+<td>万家</td>
+<td>万家中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>19</td>
+<td>博时</td>
+<td>博时周周享同业存单7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>20</td>
+<td>大成</td>
+<td>大成中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>21</td>
+<td>银华</td>
+<td>银华中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>22</td>
+<td>广发</td>
+<td>广发中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>23</td>
+<td>鹏扬</td>
+<td>鹏扬中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>24</td>
+<td>华安</td>
+<td>华安中证同业存单AAA指数7天持有期发起式证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>25</td>
+<td>华泰柏瑞</td>
+<td>华泰柏瑞中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>26</td>
+<td>嘉实</td>
+<td>嘉实中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>27</td>
+<td>国联安</td>
+<td>国联安中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>28</td>
+<td>中欧</td>
+<td>中欧中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>29</td>
+<td>东吴</td>
+<td>东吴中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>30</td>
+<td>易方达</td>
+<td>易方达中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>31</td>
+<td>建信</td>
+<td>建信中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>32</td>
+<td>中加</td>
+<td>中加中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>33</td>
+<td>国泰</td>
+<td>国泰中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>34</td>
+<td>工银瑞信</td>
+<td>工银瑞信中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>35</td>
+<td>永赢</td>
+<td>永赢中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>36</td>
+<td>浦银安盛</td>
+<td>浦银安盛中债同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>37</td>
+<td>华宝</td>
+<td>华宝中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>38</td>
+<td>汇添富</td>
+<td>汇添富同业存单30天持有期混合型证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>39</td>
+<td>东方资管</td>
+<td>东方红中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>40</td>
+<td>中融</td>
+<td>中融中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>41</td>
+<td>中银</td>
+<td>中银中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;8</td>
+<td>2021-10-14（受理）</td>
+<td>2021&#x2F;12&#x2F;3</td>
+<td></td>
+</tr>
+<tr>
+<td>42</td>
+<td>申万菱信</td>
+<td>申万菱信中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;9</td>
+<td>2021-10-15（受理）</td>
+<td>2021&#x2F;12&#x2F;21</td>
+<td></td>
+</tr>
+<tr>
+<td>43</td>
+<td>汇泉</td>
+<td>汇泉中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;11</td>
+<td>2021-10-15（受理）</td>
+<td>2021&#x2F;12&#x2F;21</td>
+<td></td>
+</tr>
+<tr>
+<td>44</td>
+<td>中信建投</td>
+<td>中信建投中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;11</td>
+<td>2021-10-15（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>45</td>
+<td>光大保德信</td>
+<td>光大保德信中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;11</td>
+<td>2021-10-15（受理）</td>
+<td>2021&#x2F;12&#x2F;21</td>
+<td></td>
+</tr>
+<tr>
+<td>46</td>
+<td>长盛</td>
+<td>长盛中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;11</td>
+<td>2021-10-15（受理）</td>
+<td>2021&#x2F;12&#x2F;21</td>
+<td></td>
+</tr>
+<tr>
+<td>47</td>
+<td>尚正</td>
+<td>尚正中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;12</td>
+<td>2021-10-18（受理）</td>
+<td>2021&#x2F;12&#x2F;21</td>
+<td></td>
+</tr>
+<tr>
+<td>48</td>
+<td>太平</td>
+<td>太平中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;12</td>
+<td>2021-10-18（受理）</td>
+<td>2021&#x2F;12&#x2F;21</td>
+<td></td>
+</tr>
+<tr>
+<td>49</td>
+<td>泰达宏利</td>
+<td>泰达宏利中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;12</td>
+<td>2021-10-18（受理）</td>
+<td>2021&#x2F;12&#x2F;21</td>
+<td></td>
+</tr>
+<tr>
+<td>50</td>
+<td>天弘</td>
+<td>天弘中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;12</td>
+<td>2021-10-18（受理）</td>
+<td>2021&#x2F;12&#x2F;21</td>
+<td></td>
+</tr>
+<tr>
+<td>51</td>
+<td>百嘉</td>
+<td>百嘉中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;13</td>
+<td>2021-10-18（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>52</td>
+<td>中邮创业</td>
+<td>中邮中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;13</td>
+<td>2021-10-18（受理）</td>
+<td>2021&#x2F;12&#x2F;21</td>
+<td></td>
+</tr>
+<tr>
+<td>53</td>
+<td>国金</td>
+<td>国金中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;13</td>
+<td>2021-10-18（受理）</td>
+<td>2021&#x2F;12&#x2F;21</td>
+<td></td>
+</tr>
+<tr>
+<td>54</td>
+<td>方正富邦</td>
+<td>方正富邦中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;13</td>
+<td>2021-10-18（受理）</td>
+<td>2021&#x2F;12&#x2F;21</td>
+<td></td>
+</tr>
+<tr>
+<td>55</td>
+<td>兴业</td>
+<td>兴业中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;14</td>
+<td>2021-10-21（受理）</td>
+<td>2022&#x2F;1&#x2F;6</td>
+<td></td>
+</tr>
+<tr>
+<td>56</td>
+<td>富安达</td>
+<td>富安达中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;14</td>
+<td>2021-10-21（受理）</td>
+<td>2022&#x2F;1&#x2F;6</td>
+<td></td>
+</tr>
+<tr>
+<td>57</td>
+<td>国投瑞银</td>
+<td>国投瑞银中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;14</td>
+<td>2021-10-21（受理）</td>
+<td>2022&#x2F;1&#x2F;6</td>
+<td></td>
+</tr>
+<tr>
+<td>58</td>
+<td>上银</td>
+<td>上银中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;14</td>
+<td>2021-10-21（受理）</td>
+<td>2022&#x2F;1&#x2F;6</td>
+<td></td>
+</tr>
+<tr>
+<td>59</td>
+<td>长安</td>
+<td>长安中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;15</td>
+<td>2021-10-21（受理）</td>
+<td>2022&#x2F;1&#x2F;6</td>
+<td></td>
+</tr>
+<tr>
+<td>60</td>
+<td>汇安</td>
+<td>汇安中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;15</td>
+<td>2021-10-21（受理）</td>
+<td>2022&#x2F;1&#x2F;6</td>
+<td></td>
+</tr>
+<tr>
+<td>61</td>
+<td>西部利得</td>
+<td>西部利得中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;15</td>
+<td>2021-10-21（受理）</td>
+<td>2022&#x2F;1&#x2F;6</td>
+<td></td>
+</tr>
+<tr>
+<td>62</td>
+<td>宝盈</td>
+<td>宝盈中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;15</td>
+<td>2021-10-21（受理）</td>
+<td>2022&#x2F;1&#x2F;6</td>
+<td></td>
+</tr>
+<tr>
+<td>63</td>
+<td>红土创新</td>
+<td>红土创新中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;15</td>
+<td>2021-10-21（受理）</td>
+<td>2022&#x2F;1&#x2F;6</td>
+<td></td>
+</tr>
+<tr>
+<td>64</td>
+<td>国泰君安资管</td>
+<td>国泰君安中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;18</td>
+<td>2021-10-25（受理）</td>
+<td>2022&#x2F;1&#x2F;6</td>
+<td></td>
+</tr>
+<tr>
+<td>65</td>
+<td>安信</td>
+<td>安信中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;19</td>
+<td>2021-10-25（受理）</td>
+<td>2022&#x2F;1&#x2F;6</td>
+<td></td>
+</tr>
+<tr>
+<td>66</td>
+<td>蜂巢</td>
+<td>蜂巢中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;19</td>
+<td>2021-10-25（受理）</td>
+<td>2022&#x2F;1&#x2F;6</td>
+<td></td>
+</tr>
+<tr>
+<td>67</td>
+<td>财通资管</td>
+<td>财通资管中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;22</td>
+<td>2021-10-29(受理)</td>
+<td>2022&#x2F;1&#x2F;6</td>
+<td></td>
+</tr>
+<tr>
+<td>68</td>
+<td>银河</td>
+<td>银河中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;22</td>
+<td>2021-10-29(受理)</td>
+<td>2022&#x2F;1&#x2F;6</td>
+<td></td>
+</tr>
+<tr>
+<td>69</td>
+<td>同泰</td>
+<td>同泰周周享中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;22</td>
+<td>2021-10-29(受理)</td>
+<td>2022&#x2F;1&#x2F;6</td>
+<td></td>
+</tr>
+<tr>
+<td>70</td>
+<td>红塔红土</td>
+<td>红塔红土中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;25</td>
+<td>2021-11-1（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>71</td>
+<td>兴证全球</td>
+<td>兴证全球中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;25</td>
+<td>2021-11-1（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>72</td>
+<td>长信</td>
+<td>长信中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;29</td>
+<td>2021-11-4（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>73</td>
+<td>中泰证券资管</td>
+<td>中泰中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;10&#x2F;29</td>
+<td>2021-11-4（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>74</td>
+<td>融通</td>
+<td>融通中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;11&#x2F;2</td>
+<td>2021-11-9（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>75</td>
+<td>财通</td>
+<td>财通中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;11&#x2F;8</td>
+<td>2021-11-15（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>76</td>
+<td>博道</td>
+<td>博道中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;11&#x2F;11</td>
+<td>2021-11-18（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>77</td>
+<td>中海</td>
+<td>中海中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;11&#x2F;12</td>
+<td>2021-11-19（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>78</td>
+<td>中银国际证券</td>
+<td>中银证券中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;11&#x2F;12</td>
+<td>2021-11-19（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>79</td>
+<td>汇丰晋信</td>
+<td>汇丰晋信中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;11&#x2F;15</td>
+<td>2021-11-22（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>80</td>
+<td>国寿安保</td>
+<td>国寿安保中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;11&#x2F;17</td>
+<td>2021-11-24（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>81</td>
+<td>浙商资管</td>
+<td>浙商汇金中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;11&#x2F;22</td>
+<td>2021-11-26（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>82</td>
+<td>诺德</td>
+<td>诺德中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;11&#x2F;22</td>
+<td>2021-11-26（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>83</td>
+<td>达诚</td>
+<td>达诚中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;11&#x2F;23</td>
+<td>2021-11-30（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>84</td>
+<td>西藏东财</td>
+<td>西藏东财中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;11&#x2F;23</td>
+<td>2021-11-30（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>85</td>
+<td>上投摩根</td>
+<td>上投摩根周周盈中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;11&#x2F;23</td>
+<td>2021-11-30（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>86</td>
+<td>交银施罗德</td>
+<td>交银施罗德中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;11&#x2F;23</td>
+<td>2021-11-30（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>87</td>
+<td>浙商</td>
+<td>浙商同业存单7天持有期证券投资基金</td>
+<td>2021&#x2F;11&#x2F;26</td>
+<td>2021-12-3（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>88</td>
+<td>国融</td>
+<td>国融中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;11&#x2F;30</td>
+<td>2021-12-6（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>89</td>
+<td>弘毅远方</td>
+<td>弘毅远方中证同业存单AAA指数7天持有期发起式证券投资基金</td>
+<td>2021&#x2F;12&#x2F;15</td>
+<td>2021-12-22（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>90</td>
+<td>泰信</td>
+<td>泰信中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;12&#x2F;16</td>
+<td>2021-12-22（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>91</td>
+<td>南华</td>
+<td>南华中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;12&#x2F;17</td>
+<td>2021-12-24（受理）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>92</td>
+<td>华商</td>
+<td>华商中证同业存单AAA指数7天持有期证券投资基金</td>
+<td>2021&#x2F;12&#x2F;28</td>
+<td>2022&#x2F;1&#x2F;5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>93</td>
+<td>嘉合</td>
+<td>嘉合同业存单7天持有期证券投资基金</td>
+<td>2021&#x2F;11&#x2F;3</td>
+<td>2022&#x2F;1&#x2F;18</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>[<a href="#_ftnref1">1]</a> 《富国同业存单AAA指数7天持有期证券投资基金基金合同》p. 43</p>
+<p>[<a href="#_ftnref2">2]</a> 《富国同业存单AAA指数7天持有期证券投资基金基金招募说明书》</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Terrence
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2022/03/18/%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/" title="同业存单基金研究报告">http://example.com/2022/03/18/同业存单基金研究报告/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9F%BA%E9%87%91%E7%A0%94%E7%A9%B6/" rel="tag"># 基金研究</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/11/%E6%8B%94%E7%89%99%E8%AE%B0/" rel="prev" title="拔牙记">
+      <i class="fa fa-chevron-left"></i> 拔牙记
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E6%8C%87%E6%95%B0%E5%9F%BA%E9%87%91%E7%8E%B0%E7%8A%B6"><span class="nav-number">1.</span> <span class="nav-text">一、 同业存单指数基金现状</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E6%8C%87%E6%95%B0%E5%9F%BA%E9%87%91%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">(一)  同业存单指数基金定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E6%8C%87%E6%95%B0%E5%9F%BA%E9%87%91%E8%A7%84%E6%A8%A1%E4%B8%8E%E4%B8%9A%E7%BB%A9"><span class="nav-number">1.2.</span> <span class="nav-text">(二)  同业存单指数基金规模与业绩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E8%B4%AD%E4%B9%B0%E5%AE%A2%E6%88%B7%E6%9E%84%E6%88%90"><span class="nav-number">1.3.</span> <span class="nav-text">(三)  同业存单基金购买客户构成</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E7%AB%9E%E5%93%81%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">二、 竞品分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E5%B8%82%E5%9C%BA%E5%89%8D%E6%99%AF%E4%B8%8E%E5%B8%82%E5%9C%BA%E5%AE%B9%E9%87%8F%E9%A2%84%E5%88%A4"><span class="nav-number">3.</span> <span class="nav-text">三、 市场前景与市场容量预判</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E6%8C%87%E6%95%B0%E5%9F%BA%E9%87%91%E6%88%90%E5%88%86%E5%AD%98%E5%8D%95%E7%9A%84%E9%80%89%E6%8B%A9"><span class="nav-number">4.</span> <span class="nav-text">四、 同业存单指数基金成分存单的选择</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95AAA%E6%8C%87%E6%95%B0%E7%BC%96%E5%88%B6%E6%96%B9%E6%B3%95%E4%BB%8B%E7%BB%8D"><span class="nav-number">4.1.</span> <span class="nav-text">(一)  同业存单AAA指数编制方法介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E8%BF%BD%E8%B8%AA%E6%8C%87%E6%95%B0%E6%96%B9%E6%B3%95%E4%BB%8B%E7%BB%8D"><span class="nav-number">4.2.</span> <span class="nav-text">(二)  同业存单基金追踪指数方法介绍</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81-%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E6%8C%87%E6%95%B0%E5%9F%BA%E6%9C%AC%E6%83%85%E5%86%B5%E4%BB%8B%E7%BB%8D"><span class="nav-number">5.</span> <span class="nav-text">五、 同业存单指数基本情况介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E6%8C%87%E6%95%B0%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90"><span class="nav-number">5.1.</span> <span class="nav-text">(一)  同业存单指数基本构成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E6%8C%87%E6%95%B0%E4%B8%9A%E7%BB%A9%E5%AF%B9%E6%AF%94%E4%B8%8E%E8%A1%A8%E7%8E%B0"><span class="nav-number">5.2.</span> <span class="nav-text">(二)  同业存单指数业绩对比与表现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E4%B8%AD%E8%AF%81%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95AAA%E6%8C%87%E6%95%B0%E6%88%90%E5%88%86%E5%88%B8%E6%9E%84%E6%88%90"><span class="nav-number">5.3.</span> <span class="nav-text">(三)  中证同业存单AAA指数成分券构成</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AD%E3%80%81-%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E3%80%81%E8%B4%A7%E5%B8%81%E5%9F%BA%E9%87%91%E4%B8%8E%E7%9F%AD%E5%80%BA%E5%9F%BA%E9%87%91%E4%B8%9A%E7%BB%A9%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">6.</span> <span class="nav-text">六、 同业存单基金、货币基金与短债基金业绩的比较</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%83%E3%80%81-%E9%99%84%E5%BD%95%EF%BC%9A%E8%AF%81%E7%9B%91%E4%BC%9A%E5%90%8C%E4%B8%9A%E5%AD%98%E5%8D%95%E5%9F%BA%E9%87%91%E7%94%B3%E8%AF%B7%E5%85%AC%E7%A4%BA%E8%A1%A8%EF%BC%88%E6%88%AA%E6%AD%A22022%E5%B9%B42%E6%9C%8825%E6%97%A5%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">七、 附录：证监会同业存单基金申请公示表（截止2022年2月25日）</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Terrence"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Terrence</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/teng416" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;teng416" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:li_teng416@sina.com" title="E-Mail → mailto:li_teng416@sina.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+
+
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Terrence</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'l4BBQPCPzlSXatg6H3PMGNAQ-gzGzoHsz',
+      appKey     : 'u59XTa1BYg1wJyMxl2nKEy8c',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
